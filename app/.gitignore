@@ -26,3 +26,5 @@ app/build 2/
 app/release/
 .keystore
 .idea/workspace.xml
+.idea/
+.gradle/

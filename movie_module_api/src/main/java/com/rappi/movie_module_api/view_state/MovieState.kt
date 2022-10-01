@@ -7,5 +7,8 @@ sealed class MovieState {
     object Idle : MovieState()
     data class UpComingSuccessful(val movies: List<Movie>) : MovieState()
     object UpComingEmpty : MovieState()
-    data class MovieFailure(@StringRes val error: Int) : MovieState()
+    data class TopRatedSuccessful(val movies: List<Movie>) : MovieState()
+    object TopRatedEmpty : MovieState()
+    data class UpComingFailure(@StringRes val error: Int) : MovieState()
+    data class TopRatedFailure(@StringRes val error: Int) : MovieState()
 }

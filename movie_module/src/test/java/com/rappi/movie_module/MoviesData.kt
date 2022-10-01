@@ -3,7 +3,7 @@ package com.rappi.movie_module
 import com.rappi.movie_module_api.data.Movie
 
 object MoviesData {
-    fun getUpcomingList(): List<Movie> =
+    fun movies(): List<Movie> =
         listOf(
             Movie(movieId = "1", ""),
             Movie(movieId = "2", ""),
