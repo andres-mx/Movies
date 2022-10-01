@@ -13,7 +13,7 @@ class MoviesRepositoryImpl @Inject constructor() : MoviesRepository {
         TODO("Not yet implemented")
     }
 
-    override fun getRecommended(language: Any, year: Any): List<Movie> {
+    override fun getRecommended(language: String, year: String): List<Movie> {
         TODO("Not yet implemented")
     }
 }
