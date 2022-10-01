@@ -25,3 +25,4 @@ cx.json
 app/build 2/
 app/release/
 .keystore
+.idea/workspace.xml
