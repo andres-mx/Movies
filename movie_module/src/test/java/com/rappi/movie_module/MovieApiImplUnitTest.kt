@@ -18,7 +18,7 @@ class MovieApiImplUnitTest {
     private lateinit var services: MovieService
 
     @Before
-    fun `setUp`() {
+    fun setUp() {
         services = mock(MovieService::class.java)
         movieApi = MovieApiImpl(services)
     }

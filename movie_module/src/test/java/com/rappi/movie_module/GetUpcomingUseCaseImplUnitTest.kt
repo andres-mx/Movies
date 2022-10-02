@@ -20,7 +20,7 @@ class GetUpcomingUseCaseImplUnitTest {
     private val repository: MoviesRepository = mock()
 
     @Before
-    fun `setUp`() {
+    fun setUp() {
         getMoviesUseCase = GetTopRatedUseCaseImpl(repository)
     }
 

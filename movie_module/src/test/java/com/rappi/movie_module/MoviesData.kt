@@ -3,6 +3,8 @@ package com.rappi.movie_module
 import com.rappi.movie_module.data.MovieResponse
 import com.rappi.movie_module.data.Result
 import com.rappi.movie_module_api.data.Movie
+import com.rappi.movie_module_api.view_state.MovieState
+import com.rappi.movie_module_api.view_state.MovieState.UpComingSuccessful
 
 object MoviesData {
     const val YEAR = "2022"
@@ -30,4 +32,8 @@ object MoviesData {
         total_pages = 1,
         total_results = 1
     )
+
+    fun moviesState(): MovieState {
+        return UpComingSuccessful(movies())
+    }
 }
