@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.rappi.movie_module.databinding.FragmentMoviesBinding
 import com.rappi.movie_module.view_models.MoviesViewModel
 import com.rappi.movie_module.view_state.MovieViewState
+import com.rappi.movie_module.views.movies.VideoAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,6 +17,7 @@ class MoviesFragment : Fragment() {
     private val viewModel: MoviesViewModel by viewModels()
     private var _binding: FragmentMoviesBinding? = null
     private val binding: FragmentMoviesBinding get() = _binding!!
+    private lateinit var videoAdapter: VideoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +46,8 @@ class MoviesFragment : Fragment() {
 
     private fun renderUi(movieViewState: MovieViewState?) = when (movieViewState) {
         is MovieViewState.MoviesSuccessful -> {
-
+            videoAdapter = VideoAdapter(movieViewState.movies)
+            binding.videos.adapter = videoAdapter
         }
         is MovieViewState.MoviesFailure -> {
 

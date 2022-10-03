@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rappi.movie_module.utils.MovieUtils.getVideosData
 import com.rappi.movie_module.view_state.MovieViewState
 import com.rappi.movie_module_api.GetMoviesUseCase
 import com.rappi.movie_module_api.TopRated
@@ -44,9 +45,8 @@ class MoviesViewModel @Inject constructor(
                     }
                 }
 
-                println("valuesMovies: "+upComings.size+": "+topRated.size)
-
-                _moviesViewState.postValue(MovieViewState.MoviesSuccessful(topRated))
+                val videos = getVideosData(upComings, topRated)
+                _moviesViewState.postValue(MovieViewState.MoviesSuccessful(videos))
             } catch (ex: Exception) {
                 _moviesViewState.postValue(MovieViewState.MoviesFailure(ex.localizedMessage.orEmpty()))
             }

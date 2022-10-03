@@ -25,9 +25,8 @@ class EMovieNetwork : NetworkModule {
     @Provides
     @NetworkRetrofit
     override fun networkRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        val baseUrl = "https://api.themoviedb.org/3/movie/"
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BuildConfig.THEMOVIE)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

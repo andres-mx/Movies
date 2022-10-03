@@ -1,27 +1,28 @@
 package com.rappi.movie_module.data
 
+import com.rappi.network_module.BuildConfig.APIKEY
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MovieService {
-    @GET("upcoming")
+    @GET("movie/upcoming")
     suspend fun getUpcoming(
         @Query("language") language: String? = "",
         @Query("page") page: String? = "1",
-        @Query("api_key") apiKey: String? = "cf689d1c71b97032eca0391929094623"
+        @Query("api_key") apiKey: String? = APIKEY
     ): MovieResponse
 
-    @GET("top_rated")
+    @GET("movie/top_rated")
     suspend fun getTopRated(
         @Query("language") language: String? = "",
         @Query("page") page: String? = "1",
         @Query("api_key") apiKey: String? = "cf689d1c71b97032eca0391929094623"
     ): MovieResponse
 
-    @GET("popular")
+    @GET("movie/popular")
     suspend fun getRecommended(
         @Query("language") language: String? = "",
         @Query("page") page: String? = "1",
-        @Query("api_key") apiKey: String? = ""
+        @Query("api_key") apiKey: String? = APIKEY
     ): MovieResponse
 }
