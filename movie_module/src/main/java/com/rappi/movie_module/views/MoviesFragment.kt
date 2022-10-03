@@ -28,7 +28,7 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpObserve()
-        //viewModel.getMovies()
+        viewModel.getMovies()
     }
 
     override fun onDestroy() {

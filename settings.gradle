@@ -16,3 +16,5 @@ rootProject.name = "Movies"
 include ':app'
 include ':movie_module_api'
 include ':movie_module'
+include ':network_module_api'
+include ':network_module'
