@@ -1,13 +1,13 @@
 package com.rappi.movie_module.view_models
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rappi.movie_module.view_state.MovieViewState
 import com.rappi.movie_module_api.GetMoviesUseCase
+import com.rappi.movie_module_api.TopRated
+import com.rappi.movie_module_api.Upcoming
 import com.rappi.movie_module_api.view_state.MovieState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +15,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MoviesViewModel @Inject constructor(private val getUpcomingUseCase: GetMoviesUseCase) :
+class MoviesViewModel @Inject constructor(
+    @Upcoming private val getUpcomingUseCase: GetMoviesUseCase,
+    @TopRated private val getTopRatedUseCase: GetMoviesUseCase
+) :
     ViewModel() {
     private val _moviesViewState: MutableLiveData<MovieViewState> = MutableLiveData()
     val moviesViewState: LiveData<MovieViewState> get() = _moviesViewState
@@ -23,14 +26,27 @@ class MoviesViewModel @Inject constructor(private val getUpcomingUseCase: GetMov
     fun getMovies() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                when (val movies = getUpcomingUseCase()) {
+                val upComings = when (val movies = getUpcomingUseCase()) {
                     is MovieState.UpComingSuccessful -> {
-                        _moviesViewState.postValue(MovieViewState.MoviesSuccessful(movies.movies))
+                        movies.movies
                     }
                     else -> {
-                        _moviesViewState.postValue(MovieViewState.Idle)
+                        emptyList()
                     }
                 }
+
+                val topRated = when (val movies = getTopRatedUseCase()) {
+                    is MovieState.TopRatedSuccessful -> {
+                        movies.movies
+                    }
+                    else -> {
+                        emptyList()
+                    }
+                }
+
+                println("valuesMovies: "+upComings.size+": "+topRated.size)
+
+                _moviesViewState.postValue(MovieViewState.MoviesSuccessful(topRated))
             } catch (ex: Exception) {
                 _moviesViewState.postValue(MovieViewState.MoviesFailure(ex.localizedMessage.orEmpty()))
             }

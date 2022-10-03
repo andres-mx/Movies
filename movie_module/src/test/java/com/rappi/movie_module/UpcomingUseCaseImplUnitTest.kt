@@ -15,7 +15,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
-class GetUpcomingUseCaseImplUnitTest {
+class UpcomingUseCaseImplUnitTest {
     private lateinit var getMoviesUseCase: GetMoviesUseCase
     private val repository: MoviesRepository = mock()
 

@@ -15,7 +15,7 @@ interface MovieService {
     suspend fun getTopRated(
         @Query("language") language: String? = "",
         @Query("page") page: String? = "1",
-        @Query("api_key") apiKey: String? = ""
+        @Query("api_key") apiKey: String? = "cf689d1c71b97032eca0391929094623"
     ): MovieResponse
 
     @GET("popular")
