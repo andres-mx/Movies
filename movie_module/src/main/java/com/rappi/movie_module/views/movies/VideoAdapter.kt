@@ -5,7 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.rappi.movie_module.databinding.VideoHolderBinding
 
-class VideoAdapter(private val videos: List<VideosViewData>) :
+class VideoAdapter(
+    private val videos: List<VideosViewData>,
+    private val listItemClick: (Int) -> Unit
+) :
     RecyclerView.Adapter<VideoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder =
         VideoItemViewHolder(
@@ -13,7 +16,7 @@ class VideoAdapter(private val videos: List<VideosViewData>) :
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ), listItemClick
         )
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {

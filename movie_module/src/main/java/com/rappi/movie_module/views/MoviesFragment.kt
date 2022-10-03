@@ -46,7 +46,7 @@ class MoviesFragment : Fragment() {
 
     private fun renderUi(movieViewState: MovieViewState?) = when (movieViewState) {
         is MovieViewState.MoviesSuccessful -> {
-            movieAdapter = MovieAdapter(movieViewState.movies)
+            movieAdapter = MovieAdapter(movieViewState.movies, videoItemClick)
             binding.videos.adapter = movieAdapter
         }
         is MovieViewState.MoviesFailure -> {
@@ -58,5 +58,9 @@ class MoviesFragment : Fragment() {
         else -> {
 
         }
+    }
+
+    private val videoItemClick: (Int) -> Unit = { id ->
+        println("El id es: $id")
     }
 }
