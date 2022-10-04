@@ -52,6 +52,7 @@ class MoviesFragment : Fragment() {
 
     private fun renderUi(movieViewState: MovieViewState?) = when (movieViewState) {
         is MovieViewState.MoviesSuccessful -> {
+            showRecyclerView()
             movieAdapter = MovieAdapter(movieViewState.movies, videoItemClick)
             binding.videos.adapter = movieAdapter
         }
@@ -59,7 +60,7 @@ class MoviesFragment : Fragment() {
 
         }
         is MovieViewState.Idle -> {
-
+            binding.shimmerLayout.startShimmer()
         }
         else -> {
 
@@ -68,5 +69,13 @@ class MoviesFragment : Fragment() {
 
     private val videoItemClick: (Int) -> Unit = { id ->
         movieDetailFromMovieRoute.show(id, findNavController())
+    }
+
+    private fun showRecyclerView() {
+        binding.shimmerLayout.apply {
+            stopShimmer()
+            visibility = View.GONE
+        }
+        binding.videos.visibility = View.VISIBLE
     }
 }

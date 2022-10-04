@@ -74,7 +74,8 @@ class DetailMovieFragment : Fragment() {
                 fillUi(movieDetailViewState.movieDetailViewData)
             }
             is MovieDetailViewState.MovieDetailFailure -> {}
-            is MovieDetailViewState.Idle -> {}
+            is MovieDetailViewState.Idle -> {
+            }
             else -> {}
         }
 }

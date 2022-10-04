@@ -24,6 +24,7 @@ class MovieDetailViewModel @Inject constructor(private val getMovieDetailUseCase
     fun getMovieDetail(movieId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
+                _movieDetailViewState.postValue(MovieDetailViewState.Idle)
                 val movieDetail = when (val movie = getMovieDetailUseCase(movieId)) {
                     is MovieDetailState.MovieDetailSuccessful -> {
                         movie.detailMovie

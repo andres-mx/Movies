@@ -27,6 +27,7 @@ class MoviesViewModel @Inject constructor(
     fun getMovies() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
+                _moviesViewState.postValue(MovieViewState.Idle)
                 val upComings = when (val movies = getUpcomingUseCase()) {
                     is MovieState.UpComingSuccessful -> {
                         movies.movies
