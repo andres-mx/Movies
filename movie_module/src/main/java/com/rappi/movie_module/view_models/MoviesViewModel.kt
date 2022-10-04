@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rappi.movie_module.utils.MovieUtils.getVideosData
 import com.rappi.movie_module.view_state.MovieViewState
-import com.rappi.movie_module_api.GetMoviesUseCase
+import com.rappi.movie_module_api.domain.GetMoviesUseCase
 import com.rappi.movie_module_api.TopRated
 import com.rappi.movie_module_api.Upcoming
 import com.rappi.movie_module_api.view_state.MovieState

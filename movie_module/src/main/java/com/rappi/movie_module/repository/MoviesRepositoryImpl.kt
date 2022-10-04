@@ -1,6 +1,6 @@
 package com.rappi.movie_module.repository
 
-import com.rappi.movie_module_api.MoviesRepository
+import com.rappi.movie_module_api.repository.MoviesRepository
 import com.rappi.movie_module_api.data.Movie
 import com.rappi.movie_module_api.data.MovieApi
 import javax.inject.Inject

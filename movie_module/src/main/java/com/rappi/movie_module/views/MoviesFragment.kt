@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.rappi.core_module.DetailMovieFromMovieRoute
+import com.rappi.core_module.MovieDetailFromMovieRoute
 import com.rappi.movie_module.databinding.FragmentMoviesBinding
 import com.rappi.movie_module.view_models.MoviesViewModel
 import com.rappi.movie_module.view_state.MovieViewState
@@ -23,7 +23,7 @@ class MoviesFragment : Fragment() {
     private lateinit var movieAdapter: MovieAdapter
 
     @Inject
-    lateinit var detailMovieFromMovieRoute: DetailMovieFromMovieRoute
+    lateinit var movieDetailFromMovieRoute: MovieDetailFromMovieRoute
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,6 +67,6 @@ class MoviesFragment : Fragment() {
     }
 
     private val videoItemClick: (Int) -> Unit = { id ->
-        detailMovieFromMovieRoute.show(id, findNavController())
+        movieDetailFromMovieRoute.show(id, findNavController())
     }
 }

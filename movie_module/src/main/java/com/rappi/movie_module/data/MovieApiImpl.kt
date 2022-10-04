@@ -7,9 +7,7 @@ import com.rappi.network_module_api.NetworkRetrofit
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-class MovieApiImpl @Inject constructor(@NetworkRetrofit retrofit: Retrofit) : MovieApi {
-    private val movieService = retrofit.create(MovieService::class.java)
-
+class MovieApiImpl @Inject constructor(private val movieService: MovieService) : MovieApi {
     override suspend fun getUpcoming(): List<Movie> =
         movieService.getUpcoming().results?.map { it.toMovie() } ?: emptyList()
 

@@ -1,8 +1,8 @@
 package com.rappi.movie_module
 
 import com.rappi.movie_module.domain.GetTopRatedUseCaseImpl
-import com.rappi.movie_module_api.GetMoviesUseCase
-import com.rappi.movie_module_api.MoviesRepository
+import com.rappi.movie_module_api.domain.GetMoviesUseCase
+import com.rappi.movie_module_api.repository.MoviesRepository
 import com.rappi.movie_module_api.view_state.MovieState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

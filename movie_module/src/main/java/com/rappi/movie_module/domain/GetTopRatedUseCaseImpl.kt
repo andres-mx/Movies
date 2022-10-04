@@ -1,8 +1,8 @@
 package com.rappi.movie_module.domain
 
 import com.rappi.movie_module.R.string.top_rated_error
-import com.rappi.movie_module_api.GetMoviesUseCase
-import com.rappi.movie_module_api.MoviesRepository
+import com.rappi.movie_module_api.domain.GetMoviesUseCase
+import com.rappi.movie_module_api.repository.MoviesRepository
 import com.rappi.movie_module_api.view_state.MovieState
 import javax.inject.Inject
 

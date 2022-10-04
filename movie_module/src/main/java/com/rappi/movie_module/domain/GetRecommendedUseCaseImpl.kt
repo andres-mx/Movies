@@ -1,8 +1,8 @@
 package com.rappi.movie_module.domain
 
 import com.rappi.movie_module.R
-import com.rappi.movie_module_api.GetRecommendedUseCase
-import com.rappi.movie_module_api.MoviesRepository
+import com.rappi.movie_module_api.domain.GetRecommendedUseCase
+import com.rappi.movie_module_api.repository.MoviesRepository
 import com.rappi.movie_module_api.view_state.MovieState
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.rappi.movie_module_api
+package com.rappi.movie_module_api.repository
 
 import com.rappi.movie_module_api.data.Movie
 
