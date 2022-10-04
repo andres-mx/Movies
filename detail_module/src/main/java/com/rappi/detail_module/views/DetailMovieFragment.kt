@@ -1,12 +1,12 @@
 package com.rappi.detail_module.views
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.rappi.detail_module.R
+import coil.load
 import com.rappi.detail_module.databinding.FragmentDetailMovieBinding
 import com.rappi.detail_module.view_models.MovieDetailViewModel
 import com.rappi.detail_module.view_state.MovieDetailViewState
@@ -28,6 +28,7 @@ class DetailMovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpUi()
         setUpArguments(arguments)
         setUpObserve()
         viewModel.getMovieDetail(movieId)
@@ -36,6 +37,10 @@ class DetailMovieFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private fun setUpUi() {
+
     }
 
     private fun setUpArguments(arguments: Bundle?) {
@@ -48,9 +53,26 @@ class DetailMovieFragment : Fragment() {
         }
     }
 
+    private fun fillUi(movieDetailViewData: MovieDetailViewData) = with(binding) {
+        movieImage.load(movieDetailViewData.imageUrl) {
+            crossfade(true)
+            placeholder(android.R.drawable.btn_radio)
+            error(android.R.drawable.stat_notify_error)
+        }
+        titleMovieTextView.text = movieDetailViewData.title
+        yearButton.text = movieDetailViewData.year
+        languageButton.text = movieDetailViewData.language
+        ratingButton.text = movieDetailViewData.rating.toString()
+        genderTextView.text = ""
+        originalTitleTextView.text = movieDetailViewData.originalTitle
+        descriptionTextView.text = movieDetailViewData.description
+    }
+
     private fun renderUi(movieDetailViewState: MovieDetailViewState?) =
         when (movieDetailViewState) {
-            is MovieDetailViewState.MovieDetailSuccessful -> {}
+            is MovieDetailViewState.MovieDetailSuccessful -> {
+                fillUi(movieDetailViewState.movieDetailViewData)
+            }
             is MovieDetailViewState.MovieDetailFailure -> {}
             is MovieDetailViewState.Idle -> {}
             else -> {}

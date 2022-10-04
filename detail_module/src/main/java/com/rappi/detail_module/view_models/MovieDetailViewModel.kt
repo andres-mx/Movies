@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rappi.detail_module.BuildConfig
 import com.rappi.detail_module.view_state.MovieDetailViewState
 import com.rappi.detail_module.views.MovieDetailViewData
 import com.rappi.detail_module_api.data.DetailMovie
@@ -42,7 +43,7 @@ class MovieDetailViewModel @Inject constructor(private val getMovieDetailUseCase
 
 private fun DetailMovie?.toMovieDetailViewData() = MovieDetailViewData(
     movieId = this?.movieId ?: 0,
-    imageUrl = this?.imageUrl.orEmpty(),
+    imageUrl = BuildConfig.URLIMAGES + this?.imageUrl.orEmpty(),
     year = this?.year.orEmpty(),
     language = this?.language.orEmpty(),
     title = this?.title.orEmpty(),

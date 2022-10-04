@@ -16,6 +16,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+        buildConfigField("String", "URLIMAGES", "\"https://image.tmdb.org/t/p/w342\"")
     }
 
     buildTypes {

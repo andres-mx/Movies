@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.eMovie" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/black_color</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/black_color</item>
+        <item name="toolbarStyle">@style/ToolBarStyle</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.eMovie.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="ToolBarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/black_color</item>
+        <item name="titleTextAppearance">@style/TitleTextAppearance</item>
+    </style>
+
+    <style name="TitleTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white_color</item>
+    </style>
+
+    <style name="WhiteText12" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textSize">@dimen/size_12</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="WhiteBoldText12" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textSize">@dimen/size_12</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="WhiteBoldText24" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white_color</item>
+        <item name="android:textSize">@dimen/size_24</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="BlackText12" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">@dimen/size_12</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="BlackBoldText12" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">@dimen/size_12</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TransparentButtonWithWhiteBorderText14" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/white_color</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="strokeColor">@color/white_color</item>
+    </style>
+
+    <style name="ChineseSilverButtonWithBlackBorderText14" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="backgroundTint">@color/chinese_silver_color</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="strokeColor">@color/black_color</item>
+    </style>
+
+    <style name="SaffronButtonWithBlackBorderText14" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="backgroundTint">@color/saffron_color</item>
+        <item name="android:textSize">@dimen/size_14</item>
+        <item name="textAllCaps">false</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="strokeColor">@color/black_color</item>
+    </style>
+</resources>

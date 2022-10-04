@@ -1,14 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.DetailMovieFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/movieImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:scaleType="fitXY"
+        tools:src="@tools:sample/avatars" />
 
-</FrameLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/titleMovieTextView"
+        style="@style/WhiteBoldText24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Her" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/yearButton"
+        style="@style/ChineseSilverButtonWithBlackBorderText14"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toStartOf="@id/languageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleMovieTextView"
+        tools:text="2013" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/languageButton"
+        style="@style/ChineseSilverButtonWithBlackBorderText14"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toStartOf="@id/ratingButton"
+        app:layout_constraintStart_toEndOf="@id/yearButton"
+        app:layout_constraintTop_toBottomOf="@id/titleMovieTextView"
+        tools:text="EN" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/ratingButton"
+        style="@style/SaffronButtonWithBlackBorderText14"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/languageButton"
+        app:layout_constraintTop_toBottomOf="@id/titleMovieTextView"
+        tools:text="8.0" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/genderTextView"
+        style="@style/WhiteText12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ratingButton"
+        tools:text="Hertfelt - Romance - Sci-fi - Drama" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/trailerButton"
+        style="@style/TransparentButtonWithWhiteBorderText14"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_margin="12dp"
+        android:text="@string/trailer_text"
+        android:textColor="#B3E5FC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/genderTextView"
+        tools:text="Ver trailer" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/originalTitleTextView"
+        style="@style/WhiteBoldText12"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trailerButton"
+        tools:text="Movie Pilot" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/descriptionTextView"
+        style="@style/WhiteText12"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/originalTitleTextView"
+        tools:text="Movie Pilot" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
