@@ -1,6 +1,6 @@
 package com.rappi.movie_module.data
 
-import com.rappi.network_module.BuildConfig.APIKEY
+import com.rappi.network_module_api.BuildConfig.APIKEY
 import retrofit2.http.GET
 import retrofit2.http.Query
 

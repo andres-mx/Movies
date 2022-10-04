@@ -9,4 +9,8 @@
         android:name="com.rappi.movie_module.views.MoviesFragment"
         android:label="Movies"
         tools:layout="@layout/fragment_movies" />
+
+    <include app:graph="@navigation/movie_detail_graph" />
+
+
 </navigation>
