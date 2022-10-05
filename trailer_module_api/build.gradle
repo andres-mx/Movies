@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.rappi.detail_module_api'
+    namespace 'com.rappi.trailer_module_api'
     compileSdk 33
 
     defaultConfig {

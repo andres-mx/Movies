@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import coil.load
+import com.rappi.core_module.TrailerFromMovieDetailRoute
 import com.rappi.detail_module.databinding.FragmentDetailMovieBinding
 import com.rappi.detail_module.view_models.MovieDetailViewModel
 import com.rappi.detail_module.view_state.MovieDetailViewState
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailMovieFragment : Fragment() {
@@ -18,6 +21,10 @@ class DetailMovieFragment : Fragment() {
     private var _binding: FragmentDetailMovieBinding? = null
     private val binding: FragmentDetailMovieBinding get() = _binding!!
     private var movieId: Int = 0
+
+    @Inject
+    lateinit var trailerFromMovieDetailRoute: TrailerFromMovieDetailRoute
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,7 +47,9 @@ class DetailMovieFragment : Fragment() {
     }
 
     private fun setUpUi() {
-
+        _binding?.trailerButton?.setOnClickListener {
+            trailerFromMovieDetailRoute.show(movieId, findNavController())
+        }
     }
 
     private fun setUpArguments(arguments: Bundle?) {

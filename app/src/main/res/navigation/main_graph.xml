@@ -12,5 +12,6 @@
 
     <include app:graph="@navigation/movie_detail_graph" />
 
+    <include app:graph="@navigation/trailer_graph" />
 
 </navigation>
