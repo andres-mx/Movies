@@ -11,7 +11,7 @@ data class DetailMovieResponse(
     val original_language: String? = null,
     val original_title: String? = null,
     val overview: String? = null,
-    val popularity: Double? = 0.0,
+    val popularity: Float? = 0f,
     val poster_path: String? = null,
     val production_companies: List<ProductionCompany>? = null,
     val production_countries: List<ProductionCountry>? = null,
@@ -23,6 +23,6 @@ data class DetailMovieResponse(
     val tagline: String? = null,
     val title: String? = null,
     val video: Boolean? = false,
-    val vote_average: Double? = 0.0,
+    val vote_average: Float? = 0f,
     val vote_count: Int? = 0
 )

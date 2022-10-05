@@ -1,5 +1,6 @@
 package com.rappi.network_module
 
+import com.rappi.network_module_api.BuildConfig
 import com.rappi.network_module_api.NetworkModule
 import com.rappi.network_module_api.NetworkOkHttpClient
 import com.rappi.network_module_api.NetworkRetrofit
@@ -12,7 +13,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
-import com.rappi.network_module_api.BuildConfig
 
 @Module
 @InstallIn(SingletonComponent::class)

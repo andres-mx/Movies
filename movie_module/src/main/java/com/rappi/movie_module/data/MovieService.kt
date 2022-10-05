@@ -2,6 +2,7 @@ package com.rappi.movie_module.data
 
 import com.rappi.network_module_api.BuildConfig.APIKEY
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface MovieService {

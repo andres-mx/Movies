@@ -8,5 +8,5 @@ data class MovieDetailViewData(
     val title: String,
     val originalTitle: String,
     val description: String,
-    val rating: Double? = 0.0
+    val rating: String
 )

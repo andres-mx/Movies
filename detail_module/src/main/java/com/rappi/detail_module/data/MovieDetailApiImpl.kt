@@ -22,7 +22,8 @@ private fun DetailMovieResponse.toDetailMovie(): DetailMovie? = if (this.id == 0
         language = this.original_language.orEmpty(),
         title = this.title.orEmpty(),
         originalTitle = this.original_title.orEmpty(),
-        description = this.overview.orEmpty()
+        description = this.overview.orEmpty(),
+        rating = String.format("%.2f", vote_average)
     )
 }
 

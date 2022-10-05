@@ -45,9 +45,13 @@ class MovieDetailViewModel @Inject constructor(private val getMovieDetailUseCase
 private fun DetailMovie?.toMovieDetailViewData() = MovieDetailViewData(
     movieId = this?.movieId ?: 0,
     imageUrl = BuildConfig.URLIMAGES + this?.imageUrl.orEmpty(),
-    year = this?.year.orEmpty(),
+    year = this?.year?.toDateString().orEmpty(),
     language = this?.language.orEmpty(),
     title = this?.title.orEmpty(),
     originalTitle = this?.originalTitle.orEmpty(),
-    description = this?.description.orEmpty()
+    description = this?.description.orEmpty(),
+    rating = this?.rating.orEmpty()
 )
+
+fun String.toDateString(): String = this.substring(0,4)
+

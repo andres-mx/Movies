@@ -1,6 +1,7 @@
 package com.rappi.movie_module.views.movies
 
 import coil.load
+import com.rappi.core_module.R
 import com.rappi.movie_module.databinding.VideoHolderBinding
 
 class VideoItemViewHolder(
@@ -12,8 +13,8 @@ class VideoItemViewHolder(
         imageMovie.apply {
             this.load(video.urlImage) {
                 crossfade(true)
-                placeholder(android.R.drawable.btn_radio)
-                error(android.R.drawable.stat_notify_error)
+                placeholder(R.mipmap.ic_launcher)
+                error(R.mipmap.ic_launcher)
             }
             setOnClickListener {
                 listItemClick(video.id)

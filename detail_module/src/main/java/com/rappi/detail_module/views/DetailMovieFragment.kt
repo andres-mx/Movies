@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
+import com.rappi.core_module.R
 import com.rappi.core_module.TrailerFromMovieDetailRoute
 import com.rappi.detail_module.databinding.FragmentDetailMovieBinding
 import com.rappi.detail_module.view_models.MovieDetailViewModel
@@ -65,8 +66,8 @@ class DetailMovieFragment : Fragment() {
     private fun fillUi(movieDetailViewData: MovieDetailViewData) = with(binding) {
         movieImage.load(movieDetailViewData.imageUrl) {
             crossfade(true)
-            placeholder(android.R.drawable.btn_radio)
-            error(android.R.drawable.stat_notify_error)
+            placeholder(R.mipmap.ic_launcher)
+            error(R.mipmap.ic_launcher)
         }
         titleMovieTextView.text = movieDetailViewData.title
         yearButton.text = movieDetailViewData.year

@@ -7,5 +7,6 @@ data class DetailMovie(
     val language: String,
     val title: String,
     val originalTitle: String,
-    val description: String
+    val description: String,
+    val rating: String? = "0.0"
 )
