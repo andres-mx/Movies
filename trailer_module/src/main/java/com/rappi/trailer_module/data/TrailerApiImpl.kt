@@ -1,6 +1,5 @@
 package com.rappi.trailer_module.data
 
-import com.rappi.network_module_api.BuildConfig
 import com.rappi.trailer_module_api.data.Trailer
 import com.rappi.trailer_module_api.data.TrailerApi
 import javax.inject.Inject

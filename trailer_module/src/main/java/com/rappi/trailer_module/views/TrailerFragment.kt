@@ -1,9 +1,11 @@
 package com.rappi.trailer_module.views
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.rappi.trailer_module.databinding.FragmentTrailerBinding
@@ -30,6 +32,7 @@ class TrailerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpArguments(arguments)
         setUpObserve()
+        viewModel.getTrailer(movieId)
     }
 
     override fun onDestroy() {
@@ -47,8 +50,18 @@ class TrailerFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun initUi(videoUrl: String) = with(binding) {
+        trailerWebView.webViewClient = WebViewClient()
+        trailerWebView.loadUrl(videoUrl)
+        val webSettings = trailerWebView.settings
+        webSettings.javaScriptEnabled = true
+    }
+
     private fun renderUi(trailerViewState: TrailerViewState?) = when (trailerViewState) {
-        is TrailerViewState.TrailerSuccessful -> {}
+        is TrailerViewState.TrailerSuccessful -> {
+            initUi(trailerViewState.trailer)
+        }
         is TrailerViewState.TrailerFailure -> {}
         is TrailerViewState.Idle -> {}
         else -> {}

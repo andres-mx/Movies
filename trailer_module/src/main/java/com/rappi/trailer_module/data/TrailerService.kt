@@ -6,7 +6,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TrailerService {
-    @GET("")
+    @GET("movie/{movie_id}/videos")
     suspend fun getTrailer(
         @Path("movie_id") movieId: Int = 1,
         @Query("api_key") apiKey: String? = BuildConfig.APIKEY
