@@ -15,5 +15,4 @@ R.- En mi consideración debería tener lo siguiente:
 R.- En mi opinión sería lo siguiente: 
     - Buscaría integrar la api de Youtube en la parte del trailer, al tener mi módulo de trailer, debería ser sencillo anexarlo, para que todo quedebe dentro de la app.
     - Integraría room para el manejo offline, ya que tengo mi repository sería fácil agregar room como otra dependencia y así mientras la app no se cierre que siga funcionando, una vez cerrada o abierta nuevamente limpiar todo la información si así se requiere.
-    - Usaría Lottie para las animaciones.
     - Para el filtro manejaría chips o un button con cambio de estado para el filtrado de las películas, usando el usecase que cree para esa sección.

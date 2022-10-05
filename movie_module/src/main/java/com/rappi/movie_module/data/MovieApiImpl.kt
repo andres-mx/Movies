@@ -2,9 +2,6 @@ package com.rappi.movie_module.data
 
 import com.rappi.movie_module_api.data.Movie
 import com.rappi.movie_module_api.data.MovieApi
-import com.rappi.network_module_api.NetworkOkHttpClient
-import com.rappi.network_module_api.NetworkRetrofit
-import retrofit2.Retrofit
 import javax.inject.Inject
 
 class MovieApiImpl @Inject constructor(private val movieService: MovieService) : MovieApi {
@@ -14,7 +11,7 @@ class MovieApiImpl @Inject constructor(private val movieService: MovieService) :
     override suspend fun getTopRated(): List<Movie> =
         movieService.getTopRated().results?.map { it.toMovie() } ?: emptyList()
 
-    override suspend fun getRecommended(language: String, year: String): List<Movie> =
+    override suspend fun getRecommended(): List<Movie> =
         movieService.getRecommended().results?.map { it.toMovie() } ?: emptyList()
 }
 

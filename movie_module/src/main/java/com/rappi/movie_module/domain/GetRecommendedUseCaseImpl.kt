@@ -8,10 +8,10 @@ import javax.inject.Inject
 
 class GetRecommendedUseCaseImpl @Inject constructor(private val moviesRepository: MoviesRepository) :
     GetRecommendedUseCase {
-    override suspend fun invoke(language: String, year: String): MovieState {
+    override suspend fun invoke(): MovieState {
         MovieState.Idle
         return try {
-            val movies = moviesRepository.getRecommended(language, year)
+            val movies = moviesRepository.getRecommended()
             if (movies.isEmpty()) {
                 MovieState.RecommendedEmpty
             } else {

@@ -10,7 +10,5 @@ class MoviesRepositoryImpl @Inject constructor(private val movieApi: MovieApi) :
 
     override suspend fun getTopRated(): List<Movie> = movieApi.getTopRated()
 
-    override suspend fun getRecommended(language: String, year: String): List<Movie> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getRecommended(): List<Movie> = movieApi.getRecommended()
 }

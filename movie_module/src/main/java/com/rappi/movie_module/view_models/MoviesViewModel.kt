@@ -9,6 +9,7 @@ import com.rappi.movie_module.view_state.MovieViewState
 import com.rappi.movie_module_api.TopRated
 import com.rappi.movie_module_api.Upcoming
 import com.rappi.movie_module_api.domain.GetMoviesUseCase
+import com.rappi.movie_module_api.domain.GetRecommendedUseCase
 import com.rappi.movie_module_api.view_state.MovieState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,9 +19,9 @@ import javax.inject.Inject
 @HiltViewModel
 class MoviesViewModel @Inject constructor(
     @Upcoming private val getUpcomingUseCase: GetMoviesUseCase,
-    @TopRated private val getTopRatedUseCase: GetMoviesUseCase
-) :
-    ViewModel() {
+    @TopRated private val getTopRatedUseCase: GetMoviesUseCase,
+    private val getRecommendedUseCase: GetRecommendedUseCase
+) : ViewModel() {
     private val _moviesViewState: MutableLiveData<MovieViewState> = MutableLiveData()
     val moviesViewState: LiveData<MovieViewState> get() = _moviesViewState
 
@@ -46,7 +47,16 @@ class MoviesViewModel @Inject constructor(
                     }
                 }
 
-                val videos = getVideosData(upComings, topRated)
+                val recommended = when (val movies = getRecommendedUseCase()) {
+                    is MovieState.RecommendedSuccessful -> {
+                        movies.movies
+                    }
+                    else -> {
+                        emptyList()
+                    }
+                }
+
+                val videos = getVideosData(upComings, topRated, recommended)
                 if (videos.isEmpty()) {
                     _moviesViewState.postValue(MovieViewState.MoviesFailure("Error al consumir el servicio del detalle de la película"))
                 } else {

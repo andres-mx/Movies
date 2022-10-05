@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.rappi.movie_module.databinding.MovieHolderBinding
+import com.rappi.movie_module.databinding.RecommendedHolderBinding
 
 class MovieAdapter(
     private val moviesData: List<MoviesData>,
@@ -32,14 +33,28 @@ class MovieAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder =
-        MovieViewHolder(
-            MovieHolderBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            ),
-            listItemClick
-        )
+        when (viewType) {
+            VideoViewType.VIDEO_SECTION.ordinal -> {
+                MovieViewHolder(
+                    MovieHolderBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ),
+                    listItemClick
+                )
+            }
+            else -> {
+                RecommendedViewHolder(
+                    RecommendedHolderBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ),
+                    listItemClick
+                )
+            }
+        }
 
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
@@ -47,10 +62,16 @@ class MovieAdapter(
             is MoviesData.MoviesSection -> {
                 (holder as MovieViewHolder).bind(videoCurrentPosition)
             }
+            is MoviesData.RecommendedSection -> {
+                (holder as RecommendedViewHolder).bind(videoCurrentPosition)
+            }
         }
     }
 
-    override fun getItemViewType(position: Int): Int = VideoViewType.VIDEO_SECTION.ordinal
+    override fun getItemViewType(position: Int): Int = when (moviesData[position]) {
+        is MoviesData.MoviesSection -> VideoViewType.VIDEO_SECTION.ordinal
+        else -> VideoViewType.RECOMMENDED_SECTION.ordinal
+    }
 
     override fun getItemCount(): Int = moviesData.size
 }
