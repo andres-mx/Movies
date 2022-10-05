@@ -9,6 +9,7 @@ import com.rappi.movie_module_api.data.Movie
 object MovieUtils {
     fun getVideosData(upcomingList: List<Movie>, topRatedList: List<Movie>): List<MoviesData> {
         val moviesData = mutableListOf<MoviesData>()
+        if (upcomingList.isEmpty() && topRatedList.isEmpty()) return moviesData
         val upcomingVideos = mutableListOf<VideosViewData>()
         upcomingList.map { upcoming ->
             upcomingVideos.add(

@@ -4,7 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_color"
     tools:context=".views.DetailMovieFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/errorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/workingImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="working.json"
+            app:lottie_loop="true"
+            app:lottie_speed="5"
+            tools:ignore="ContentDescription" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/errorDescriptionTextView"
+            style="@style/WhiteBoldText24"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/workingImage"
+            tools:text="Error" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/tryAgainButton"
+            style="@style/TransparentButtonWithWhiteBorderText14"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_margin="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/try_again_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/errorDescriptionTextView"
+            tools:text="Ver trailer" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/movieImage"

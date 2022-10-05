@@ -3,6 +3,8 @@ package com.rappi.detail_module.views
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -40,6 +42,7 @@ class DetailMovieFragment : Fragment() {
         setUpArguments(arguments)
         setUpObserve()
         viewModel.getMovieDetail(movieId)
+        initView()
     }
 
     override fun onDestroy() {
@@ -64,6 +67,7 @@ class DetailMovieFragment : Fragment() {
     }
 
     private fun fillUi(movieDetailViewData: MovieDetailViewData) = with(binding) {
+        showView()
         movieImage.load(movieDetailViewData.imageUrl) {
             crossfade(true)
             placeholder(R.mipmap.ic_launcher)
@@ -72,7 +76,7 @@ class DetailMovieFragment : Fragment() {
         titleMovieTextView.text = movieDetailViewData.title
         yearButton.text = movieDetailViewData.year
         languageButton.text = movieDetailViewData.language
-        ratingButton.text = movieDetailViewData.rating.toString()
+        ratingButton.text = movieDetailViewData.rating
         genderTextView.text = ""
         originalTitleTextView.text = movieDetailViewData.originalTitle
         descriptionTextView.text = movieDetailViewData.description
@@ -83,9 +87,44 @@ class DetailMovieFragment : Fragment() {
             is MovieDetailViewState.MovieDetailSuccessful -> {
                 fillUi(movieDetailViewState.movieDetailViewData)
             }
-            is MovieDetailViewState.MovieDetailFailure -> {}
+            is MovieDetailViewState.MovieDetailFailure -> {
+                showErrorView(movieDetailViewState.error)
+            }
             is MovieDetailViewState.Idle -> {
             }
             else -> {}
         }
+
+    private fun showErrorView(error: String) = with(binding) {
+        errorLayout.visibility = VISIBLE
+        errorDescriptionTextView.text = error
+        movieImage.visibility = GONE
+        titleMovieTextView.visibility = GONE
+        yearButton.visibility = GONE
+        languageButton.visibility = GONE
+        ratingButton.visibility = GONE
+        genderTextView.visibility = GONE
+        trailerButton.visibility = GONE
+        originalTitleTextView.visibility = GONE
+        descriptionTextView.visibility = GONE
+    }
+
+    private fun showView() = with(binding) {
+        movieImage.visibility = VISIBLE
+        titleMovieTextView.visibility = VISIBLE
+        yearButton.visibility = VISIBLE
+        languageButton.visibility = VISIBLE
+        ratingButton.visibility = VISIBLE
+        genderTextView.visibility = VISIBLE
+        trailerButton.visibility = VISIBLE
+        originalTitleTextView.visibility = VISIBLE
+        descriptionTextView.visibility = VISIBLE
+        errorLayout.visibility = GONE
+    }
+
+    private fun initView() = with(binding) {
+        tryAgainButton.setOnClickListener {
+            viewModel.getMovieDetail(movieId)
+        }
+    }
 }

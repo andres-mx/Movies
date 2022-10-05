@@ -37,6 +37,7 @@ class MoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpObserve()
         viewModel.getMovies()
+        initView()
     }
 
     override fun onDestroy() {
@@ -57,7 +58,7 @@ class MoviesFragment : Fragment() {
             binding.videos.adapter = movieAdapter
         }
         is MovieViewState.MoviesFailure -> {
-
+            showErrorView(movieViewState.error)
         }
         is MovieViewState.Idle -> {
             binding.shimmerLayout.startShimmer()
@@ -67,15 +68,29 @@ class MoviesFragment : Fragment() {
         }
     }
 
+    private fun initView() = with(binding) {
+        trayAgainButton.setOnClickListener {
+            viewModel.getMovies()
+        }
+    }
+
+    private fun showErrorView(error: String) = with(binding) {
+        errorLayout.visibility = View.VISIBLE
+        errorDescriptionTextView.text = error
+        videos.visibility = View.GONE
+        shimmerLayout.stopShimmer()
+        shimmerLayout.visibility = View.GONE
+    }
+
     private val videoItemClick: (Int) -> Unit = { id ->
         movieDetailFromMovieRoute.show(id, findNavController())
     }
 
-    private fun showRecyclerView() {
-        binding.shimmerLayout.apply {
-            stopShimmer()
-            visibility = View.GONE
-        }
-        binding.videos.visibility = View.VISIBLE
+    private fun showRecyclerView() = with(binding) {
+        shimmerLayout.stopShimmer()
+        shimmerLayout.visibility = View.GONE
+        errorLayout.visibility = View.GONE
+
+        videos.visibility = View.VISIBLE
     }
 }

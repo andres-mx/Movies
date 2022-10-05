@@ -33,8 +33,16 @@ class MovieDetailViewModel @Inject constructor(private val getMovieDetailUseCase
                         null
                     }
                 }
-                val detail = movieDetail.toMovieDetailViewData()
-                _movieDetailViewState.postValue(MovieDetailViewState.MovieDetailSuccessful(detail))
+                if (movieDetail == null) {
+                    _movieDetailViewState.postValue(MovieDetailViewState.MovieDetailFailure("Error al consumir el servicio de películas"))
+                } else {
+                    val detail = movieDetail.toMovieDetailViewData()
+                    _movieDetailViewState.postValue(
+                        MovieDetailViewState.MovieDetailSuccessful(
+                            detail
+                        )
+                    )
+                }
             } catch (ex: Exception) {
                 _movieDetailViewState.postValue(MovieDetailViewState.MovieDetailFailure(ex.localizedMessage.orEmpty()))
             }
@@ -53,5 +61,5 @@ private fun DetailMovie?.toMovieDetailViewData() = MovieDetailViewData(
     rating = this?.rating.orEmpty()
 )
 
-fun String.toDateString(): String = this.substring(0,4)
+fun String.toDateString(): String = this.substring(0, 4)
 
