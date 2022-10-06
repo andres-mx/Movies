@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.rappi.core_module.MovieDetailFromMovieRoute
+import com.rappi.movie_module.R
 import com.rappi.movie_module.databinding.FragmentMoviesBinding
 import com.rappi.movie_module.view_models.MoviesViewModel
 import com.rappi.movie_module.view_state.MovieViewState
@@ -54,8 +55,9 @@ class MoviesFragment : Fragment() {
     private fun renderUi(movieViewState: MovieViewState?) = when (movieViewState) {
         is MovieViewState.MoviesSuccessful -> {
             showRecyclerView()
-            movieAdapter = MovieAdapter(movieViewState.movies, videoItemClick)
+            movieAdapter = MovieAdapter(videoItemClick)
             binding.videos.adapter = movieAdapter
+            movieAdapter.submitList(movieViewState.movies)
         }
         is MovieViewState.MoviesFailure -> {
             showErrorView(movieViewState.error)
@@ -84,6 +86,7 @@ class MoviesFragment : Fragment() {
 
     private val videoItemClick: (Int) -> Unit = { id ->
         movieDetailFromMovieRoute.show(id, findNavController())
+        //findNavController().navigate(R.id.action_movieFragment_to_filterOptionBottomSheet)
     }
 
     private fun showRecyclerView() = with(binding) {

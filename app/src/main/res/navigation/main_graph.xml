@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/moviesFragment">
-    <fragment
-        android:id="@+id/moviesFragment"
-        android:name="com.rappi.movie_module.views.MoviesFragment"
-        android:label="Movies"
-        tools:layout="@layout/fragment_movies" />
-
+    app:startDestination="@id/movies_graph">
+    <include app:graph="@navigation/movies_graph" />
     <include app:graph="@navigation/movie_detail_graph" />
-
     <include app:graph="@navigation/trailer_graph" />
-
 </navigation>

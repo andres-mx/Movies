@@ -7,12 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import com.rappi.movie_module.databinding.MovieHolderBinding
 import com.rappi.movie_module.databinding.RecommendedHolderBinding
 
-class MovieAdapter(
-    private val moviesData: List<MoviesData>,
-    private val listItemClick: (Int) -> Unit
-) :
+class MovieAdapter(private val listItemClick: (Int) -> Unit) :
     ListAdapter<MoviesData, VideoViewHolder>(COMPARATOR) {
-
     companion object {
         val COMPARATOR = object : DiffUtil.ItemCallback<MoviesData>() {
             override fun areItemsTheSame(
@@ -58,7 +54,7 @@ class MovieAdapter(
 
 
     override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        when (val videoCurrentPosition = moviesData[position]) {
+        when (val videoCurrentPosition = getItem(position)) {
             is MoviesData.MoviesSection -> {
                 (holder as MovieViewHolder).bind(videoCurrentPosition)
             }
@@ -68,10 +64,8 @@ class MovieAdapter(
         }
     }
 
-    override fun getItemViewType(position: Int): Int = when (moviesData[position]) {
+    override fun getItemViewType(position: Int): Int = when (getItem(position)) {
         is MoviesData.MoviesSection -> VideoViewType.VIDEO_SECTION.ordinal
         else -> VideoViewType.RECOMMENDED_SECTION.ordinal
     }
-
-    override fun getItemCount(): Int = moviesData.size
 }
