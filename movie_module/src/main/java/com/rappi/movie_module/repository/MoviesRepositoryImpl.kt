@@ -34,10 +34,16 @@ class MoviesRepositoryImpl @Inject constructor(
     override suspend fun getRecommended(): List<Movie> = try {
         val movies = movieApi.getRecommended()
         localMovieSource.addMovies(movies, MovieType.RECOMMENDED)
-        movies
+        movies.take(6)
     } catch (ex: Exception) {
         localMovieSource.getMovies(MovieType.RECOMMENDED, 6).ifEmpty {
             emptyList()
         }
+    }
+
+    override suspend fun getMovieByYear(movieType: MovieType, year: String): List<Movie> = try {
+        localMovieSource.getMovieByYear(movieType, 6, year)
+    } catch (ex: Exception) {
+        emptyList()
     }
 }

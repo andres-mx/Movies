@@ -41,7 +41,7 @@ object MovieUtils {
 
 
         val recommendedVideos = mutableListOf<VideosViewData>()
-        recommended.take(6).map { recommended ->
+        recommended.map { recommended ->
             recommendedVideos.add(
                 VideosViewData(
                     recommended.movieId,

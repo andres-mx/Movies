@@ -8,7 +8,9 @@ import com.rappi.movie_module.utils.MovieUtils.getVideosData
 import com.rappi.movie_module.view_state.MovieViewState
 import com.rappi.movie_module_api.TopRated
 import com.rappi.movie_module_api.Upcoming
+import com.rappi.movie_module_api.data.MovieType
 import com.rappi.movie_module_api.domain.GetMoviesUseCase
+import com.rappi.movie_module_api.domain.GetRecommendedByYearUseCase
 import com.rappi.movie_module_api.domain.GetRecommendedUseCase
 import com.rappi.movie_module_api.view_state.MovieState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,7 +22,8 @@ import javax.inject.Inject
 class MoviesViewModel @Inject constructor(
     @Upcoming private val getUpcomingUseCase: GetMoviesUseCase,
     @TopRated private val getTopRatedUseCase: GetMoviesUseCase,
-    private val getRecommendedUseCase: GetRecommendedUseCase
+    private val getRecommendedUseCase: GetRecommendedUseCase,
+    private val getRecommendedByYearUseCase: GetRecommendedByYearUseCase
 ) : ViewModel() {
     private val _moviesViewState: MutableLiveData<MovieViewState> = MutableLiveData()
     val moviesViewState: LiveData<MovieViewState> get() = _moviesViewState
@@ -61,6 +64,54 @@ class MoviesViewModel @Inject constructor(
                     _moviesViewState.postValue(MovieViewState.MoviesFailure("Error al consumir el servicio del detalle de la película"))
                 } else {
                     _moviesViewState.postValue(MovieViewState.MoviesSuccessful(videos))
+                }
+            } catch (ex: Exception) {
+                _moviesViewState.postValue(MovieViewState.MoviesFailure(ex.localizedMessage.orEmpty()))
+            }
+        }
+    }
+
+    fun getRecommendedByYear(year: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                try {
+                    _moviesViewState.postValue(MovieViewState.Idle)
+                    val upComings = when (val movies = getUpcomingUseCase()) {
+                        is MovieState.UpComingSuccessful -> {
+                            movies.movies
+                        }
+                        else -> {
+                            emptyList()
+                        }
+                    }
+
+                    val topRated = when (val movies = getTopRatedUseCase()) {
+                        is MovieState.TopRatedSuccessful -> {
+                            movies.movies
+                        }
+                        else -> {
+                            emptyList()
+                        }
+                    }
+
+                    val recommended = when (val movies =
+                        getRecommendedByYearUseCase(MovieType.RECOMMENDED, year)) {
+                        is MovieState.RecommendedSuccessful -> {
+                            movies.movies
+                        }
+                        else -> {
+                            emptyList()
+                        }
+                    }
+
+                    val videos = getVideosData(upComings, topRated, recommended)
+                    if (videos.isEmpty()) {
+                        _moviesViewState.postValue(MovieViewState.MoviesFailure("Error al consumir el servicio del detalle de la película"))
+                    } else {
+                        _moviesViewState.postValue(MovieViewState.MoviesSuccessful(videos))
+                    }
+                } catch (ex: Exception) {
+                    _moviesViewState.postValue(MovieViewState.MoviesFailure(ex.localizedMessage.orEmpty()))
                 }
             } catch (ex: Exception) {
                 _moviesViewState.postValue(MovieViewState.MoviesFailure(ex.localizedMessage.orEmpty()))
