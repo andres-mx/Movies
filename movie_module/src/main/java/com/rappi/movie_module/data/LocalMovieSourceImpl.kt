@@ -31,6 +31,19 @@ class LocalMovieSourceImpl @Inject constructor(private val moviesDao: MoviesDao)
         return movies
     }
 
+    override suspend fun getMovieByLanguage(
+        movieType: MovieType,
+        limit: Int,
+        language: String
+    ): List<Movie> {
+        val moviesDatabase = moviesDao.getMoviesByLanguage(movieType.name, limit, language)
+        val movies = mutableListOf<Movie>()
+        moviesDatabase.map { movieData ->
+            movies.add(movieData.toMovie())
+        }
+        return movies
+    }
+
     override suspend fun addMovies(movies: List<Movie>, type: MovieType) {
         val moviesDatabase = mutableListOf<MovieModel>()
         movies.map { movie ->

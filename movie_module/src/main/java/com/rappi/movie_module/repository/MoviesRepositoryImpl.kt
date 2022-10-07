@@ -46,4 +46,21 @@ class MoviesRepositoryImpl @Inject constructor(
     } catch (ex: Exception) {
         emptyList()
     }
+
+    override suspend fun getLanguages(): List<String> = try {
+        val languages = localMovieSource.getMovies(MovieType.RECOMMENDED, 19)
+        val languageList = mutableListOf<String>()
+        languages.map { movie ->
+            if (movie.language?.isNotEmpty() == true) {
+                languageList.add(movie.language.orEmpty())
+            }
+        }
+        languageList.toSet().toList()
+    } catch (ex: Exception) {
+        emptyList()
+    }
+
+    override suspend fun getYear(): List<String> {
+        TODO("Not yet implemented")
+    }
 }

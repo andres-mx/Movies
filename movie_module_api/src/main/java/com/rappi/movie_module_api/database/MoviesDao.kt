@@ -13,7 +13,7 @@ interface MoviesDao {
     @Query("SELECT * FROM movie_table WHERE type = :movieType AND :year=year LIMIT :limit")
     suspend fun getMoviesByYear(movieType: String, limit: Int, year: String): List<MovieModel>
 
-    @Query("SELECT * FROM movie_table WHERE type = :movieType AND language=language LIMIT :limit")
+    @Query("SELECT * FROM movie_table WHERE type = :movieType AND :language=language LIMIT :limit")
     suspend fun getMoviesByLanguage(
         movieType: String, limit: Int, language: String
     ): List<MovieModel>

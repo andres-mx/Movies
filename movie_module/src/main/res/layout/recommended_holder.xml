@@ -10,7 +10,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:clickable="true" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/videos"
@@ -20,9 +21,9 @@
         android:layout_marginBottom="@dimen/margin_12"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/filterChipGroup"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:spanCount="2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

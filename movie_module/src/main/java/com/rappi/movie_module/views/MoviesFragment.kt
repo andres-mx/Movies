@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.rappi.core_module.MovieDetailFromMovieRoute
+import com.rappi.movie_module.R
 import com.rappi.movie_module.databinding.FragmentMoviesBinding
 import com.rappi.movie_module.view_models.MoviesViewModel
 import com.rappi.movie_module.view_state.MovieViewState
@@ -54,7 +56,7 @@ class MoviesFragment : Fragment() {
     private fun renderUi(movieViewState: MovieViewState?) = when (movieViewState) {
         is MovieViewState.MoviesSuccessful -> {
             showRecyclerView()
-            movieAdapter = MovieAdapter(videoItemClick)
+            movieAdapter = MovieAdapter(videoItemClick, filterClick)
             binding.videos.adapter = movieAdapter
             movieAdapter.submitList(movieViewState.movies)
         }
@@ -85,7 +87,13 @@ class MoviesFragment : Fragment() {
 
     private val videoItemClick: (Int) -> Unit = { id ->
         movieDetailFromMovieRoute.show(id, findNavController())
-        //findNavController().navigate(R.id.action_movieFragment_to_filterOptionBottomSheet)
+    }
+
+    private val filterClick: (String) -> Unit = { _ ->
+        findNavController().navigate(
+            R.id.action_movieFragment_to_filterOptionBottomSheet,
+            bundleOf("language" to "EN")
+        )
     }
 
     private fun showRecyclerView() = with(binding) {

@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import com.rappi.movie_module.databinding.MovieHolderBinding
 import com.rappi.movie_module.databinding.RecommendedHolderBinding
 
-class MovieAdapter(private val listItemClick: (Int) -> Unit) :
+class MovieAdapter(
+    private val listItemClick: (Int) -> Unit,
+    private val filterItemClick: (String) -> Unit
+) :
     ListAdapter<MoviesData, VideoViewHolder>(COMPARATOR) {
     companion object {
         val COMPARATOR = object : DiffUtil.ItemCallback<MoviesData>() {
@@ -47,7 +50,8 @@ class MovieAdapter(private val listItemClick: (Int) -> Unit) :
                         parent,
                         false
                     ),
-                    listItemClick
+                    listItemClick,
+                    filterItemClick
                 )
             }
         }

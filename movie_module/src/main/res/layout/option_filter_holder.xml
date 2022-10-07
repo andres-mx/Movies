@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white_color">
 
-    <RadioButton xmlns:android="http://schemas.android.com/apk/res/android"
+    <RadioButton
         android:id="@+id/optionFilterRadioButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

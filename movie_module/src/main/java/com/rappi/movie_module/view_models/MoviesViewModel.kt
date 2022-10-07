@@ -103,7 +103,6 @@ class MoviesViewModel @Inject constructor(
                             emptyList()
                         }
                     }
-
                     val videos = getVideosData(upComings, topRated, recommended)
                     if (videos.isEmpty()) {
                         _moviesViewState.postValue(MovieViewState.MoviesFailure("Error al consumir el servicio del detalle de la película"))

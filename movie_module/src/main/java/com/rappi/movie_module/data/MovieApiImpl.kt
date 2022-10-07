@@ -16,7 +16,9 @@ class MovieApiImpl @Inject constructor(private val movieService: MovieService) :
 }
 
 private fun Result.toMovie(): Movie =
-    Movie(movieId = this.id ?: 0, image = this.poster_path.orEmpty())
-
-private fun Result.toMovie(language: String, year: String): Movie =
-    Movie(movieId = this.id ?: 0, image = this.poster_path.orEmpty())
+    Movie(
+        movieId = this.id ?: 0,
+        image = this.poster_path.orEmpty(),
+        language = this.original_language,
+        year = this.release_date?.substring(0, 4)
+    )
