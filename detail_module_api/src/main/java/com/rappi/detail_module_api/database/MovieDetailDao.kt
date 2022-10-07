@@ -7,7 +7,7 @@ import androidx.room.Query
 
 @Dao
 interface MovieDetailDao {
-    @Query("SELECT * FROM movie_detail_table WHERE movieId LIKE :movieId")
+    @Query("SELECT * FROM movie_detail_table WHERE movieId = :movieId")
     suspend fun getMovieDetail(movieId: Int): MovieDetailModel
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

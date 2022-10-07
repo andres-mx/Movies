@@ -9,8 +9,8 @@ import javax.inject.Inject
 
 class LocalMovieSourceImpl @Inject constructor(private val moviesDao: MoviesDao) :
     LocalMovieSource {
-    override suspend fun getMovies(movieType: MovieType): List<Movie> {
-        val moviesDatabase = moviesDao.getMovies(movieType.name)
+    override suspend fun getMovies(movieType: MovieType, limit: Int): List<Movie> {
+        val moviesDatabase = moviesDao.getMovies(movieType.name, limit)
         val movies = mutableListOf<Movie>()
         moviesDatabase.map { movieData ->
             movies.add(movieData.toMovie())

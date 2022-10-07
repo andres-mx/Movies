@@ -7,8 +7,8 @@ import androidx.room.Query
 
 @Dao
 interface MoviesDao {
-    @Query("SELECT * FROM movie_table WHERE type LIKE :movieType")
-    suspend fun getMovies(movieType: String): List<MovieModel>
+    @Query("SELECT * FROM movie_table WHERE type = :movieType LIMIT :limit")
+    suspend fun getMovies(movieType: String, limit: Int): List<MovieModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addMovies(movies: List<MovieModel>)

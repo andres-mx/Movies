@@ -16,7 +16,7 @@ class MoviesRepositoryImpl @Inject constructor(
         localMovieSource.addMovies(movies, MovieType.UPCOMING)
         movies
     } catch (ex: Exception) {
-        localMovieSource.getMovies(MovieType.UPCOMING).ifEmpty {
+        localMovieSource.getMovies(MovieType.UPCOMING, 19).ifEmpty {
             emptyList()
         }
     }
@@ -26,7 +26,7 @@ class MoviesRepositoryImpl @Inject constructor(
         localMovieSource.addMovies(movies, MovieType.TOP_RATED)
         movies
     } catch (ex: Exception) {
-        localMovieSource.getMovies(MovieType.TOP_RATED).ifEmpty {
+        localMovieSource.getMovies(MovieType.TOP_RATED, 19).ifEmpty {
             emptyList()
         }
     }
@@ -36,7 +36,7 @@ class MoviesRepositoryImpl @Inject constructor(
         localMovieSource.addMovies(movies, MovieType.RECOMMENDED)
         movies
     } catch (ex: Exception) {
-        localMovieSource.getMovies(MovieType.RECOMMENDED).ifEmpty {
+        localMovieSource.getMovies(MovieType.RECOMMENDED, 6).ifEmpty {
             emptyList()
         }
     }
