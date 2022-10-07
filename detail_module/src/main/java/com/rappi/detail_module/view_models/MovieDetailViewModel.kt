@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.rappi.detail_module.BuildConfig
 import com.rappi.detail_module.view_state.MovieDetailViewState
 import com.rappi.detail_module.views.MovieDetailViewData
-import com.rappi.detail_module_api.data.DetailMovie
+import com.rappi.detail_module_api.data.MovieDetail
 import com.rappi.detail_module_api.domain.GetMovieDetailUseCase
 import com.rappi.detail_module_api.view_state.MovieDetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,7 +27,7 @@ class MovieDetailViewModel @Inject constructor(private val getMovieDetailUseCase
                 _movieDetailViewState.postValue(MovieDetailViewState.Idle)
                 val movieDetail = when (val movie = getMovieDetailUseCase(movieId)) {
                     is MovieDetailState.MovieDetailSuccessful -> {
-                        movie.detailMovie
+                        movie.movieDetail
                     }
                     else -> {
                         null
@@ -50,7 +50,7 @@ class MovieDetailViewModel @Inject constructor(private val getMovieDetailUseCase
     }
 }
 
-private fun DetailMovie?.toMovieDetailViewData() = MovieDetailViewData(
+private fun MovieDetail?.toMovieDetailViewData() = MovieDetailViewData(
     movieId = this?.movieId ?: 0,
     imageUrl = BuildConfig.URLIMAGES + this?.imageUrl.orEmpty(),
     year = this?.year?.toDateString().orEmpty(),

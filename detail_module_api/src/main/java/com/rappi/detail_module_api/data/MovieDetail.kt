@@ -1,6 +1,6 @@
 package com.rappi.detail_module_api.data
 
-data class DetailMovie(
+data class MovieDetail(
     val movieId: Int?,
     val imageUrl: String,
     val year: String,

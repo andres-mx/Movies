@@ -7,9 +7,6 @@ import androidx.room.Query
 
 @Dao
 interface MoviesDao {
-    @Query("SELECT * FROM movie_table")
-    suspend fun getMovies(): List<MovieModel>
-
     @Query("SELECT * FROM movie_table WHERE type LIKE :movieType")
     suspend fun getMovies(movieType: String): List<MovieModel>
 

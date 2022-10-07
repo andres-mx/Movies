@@ -1,10 +1,10 @@
 package com.rappi.detail_module
 
-import com.rappi.detail_module_api.data.DetailMovie
+import com.rappi.detail_module_api.data.MovieDetail
 
 object DetailData {
-    fun getDetailMovie(): DetailMovie =
-        DetailMovie(
+    fun getDetailMovie(): MovieDetail =
+        MovieDetail(
             movieId = 1,
             imageUrl = "",
             year = "2014",

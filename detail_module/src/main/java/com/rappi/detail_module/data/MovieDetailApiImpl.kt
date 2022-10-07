@@ -1,21 +1,21 @@
 package com.rappi.detail_module.data
 
-import com.rappi.detail_module_api.data.DetailMovie
+import com.rappi.detail_module_api.data.MovieDetail
 import com.rappi.detail_module_api.data.MovieDetailApi
 import javax.inject.Inject
 
 class MovieDetailApiImpl @Inject constructor(private val movieDetailService: MovieDetailService) :
     MovieDetailApi {
-    override suspend fun getDetailMovie(id: Int): DetailMovie? {
+    override suspend fun getDetailMovie(id: Int): MovieDetail? {
         val detailResponse = movieDetailService.getMovieDetail(movieId = id)
         return detailResponse?.toDetailMovie()
     }
 }
 
-private fun DetailMovieResponse.toDetailMovie(): DetailMovie? = if (this.id == 0) {
+private fun DetailMovieResponse.toDetailMovie(): MovieDetail? = if (this.id == 0) {
     null
 } else {
-    DetailMovie(
+    MovieDetail(
         movieId = this.id,
         imageUrl = this.poster_path.orEmpty(),
         year = this.release_date.orEmpty(),
