@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.rappi.core_module.MovieDetailFromMovieRoute
-import com.rappi.movie_module.R
 import com.rappi.movie_module.databinding.FragmentMoviesBinding
 import com.rappi.movie_module.view_models.MoviesViewModel
 import com.rappi.movie_module.view_state.MovieViewState
