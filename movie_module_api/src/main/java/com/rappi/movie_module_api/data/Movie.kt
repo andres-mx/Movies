@@ -4,5 +4,6 @@ data class Movie(
     val movieId: Int,
     val image: String,
     val language: String? = "",
-    val year: String? = ""
+    val year: String? = "",
+    val type: String? = ""
 )
