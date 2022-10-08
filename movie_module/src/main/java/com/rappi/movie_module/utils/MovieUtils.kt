@@ -1,22 +1,18 @@
 package com.rappi.movie_module.utils
 
 import com.rappi.movie_module.BuildConfig
+import com.rappi.movie_module.view_models.MoviesDataToConvert
 import com.rappi.movie_module.views.movies.MovieViewData
 import com.rappi.movie_module.views.movies.MoviesData
 import com.rappi.movie_module.views.movies.RecommendedViewData
 import com.rappi.movie_module.views.movies.VideosViewData
-import com.rappi.movie_module_api.data.Movie
 
 object MovieUtils {
-    fun getVideosData(
-        upcomingList: List<Movie>,
-        topRatedList: List<Movie>,
-        recommended: List<Movie>
-    ): List<MoviesData> {
+    fun getVideosData(moviesDataToConvert: MoviesDataToConvert): List<MoviesData> {
         val moviesData = mutableListOf<MoviesData>()
-        if (upcomingList.isEmpty() && topRatedList.isEmpty()) return moviesData
+        if (moviesDataToConvert.upComings.isEmpty() && moviesDataToConvert.topRatedList.isEmpty()) return moviesData
         val upcomingVideos = mutableListOf<VideosViewData>()
-        upcomingList.map { upcoming ->
+        moviesDataToConvert.upComings.map { upcoming ->
             upcomingVideos.add(
                 VideosViewData(
                     upcoming.movieId,
@@ -28,7 +24,7 @@ object MovieUtils {
         moviesData.add(MoviesData.MoviesSection(MovieViewData("Próximos estrenos", upcomingVideos)))
 
         val topRatedVideos = mutableListOf<VideosViewData>()
-        topRatedList.map { topRated ->
+        moviesDataToConvert.topRatedList.map { topRated ->
             topRatedVideos.add(
                 VideosViewData(
                     topRated.movieId,
@@ -41,7 +37,7 @@ object MovieUtils {
 
 
         val recommendedVideos = mutableListOf<VideosViewData>()
-        recommended.map { recommended ->
+        moviesDataToConvert.recommendedList.map { recommended ->
             recommendedVideos.add(
                 VideosViewData(
                     recommended.movieId,
@@ -53,7 +49,10 @@ object MovieUtils {
         moviesData.add(
             MoviesData.RecommendedSection(
                 RecommendedViewData(
-                    listOf("Esp", "1993"),
+                    hashMapOf(
+                        Pair(0, "Idioma: ${moviesDataToConvert.language}"),
+                        Pair(1, "Año: ${moviesDataToConvert.year}")
+                    ),
                     recommendedVideos
                 )
             )

@@ -9,7 +9,7 @@ import com.rappi.movie_module.databinding.RecommendedHolderBinding
 
 class MovieAdapter(
     private val listItemClick: (Int) -> Unit,
-    private val filterItemClick: (String) -> Unit
+    private val filterItemClick: (Int) -> Unit
 ) :
     ListAdapter<MoviesData, VideoViewHolder>(COMPARATOR) {
     companion object {

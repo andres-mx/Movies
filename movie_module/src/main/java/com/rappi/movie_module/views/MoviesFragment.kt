@@ -89,10 +89,15 @@ class MoviesFragment : Fragment() {
         movieDetailFromMovieRoute.show(id, findNavController())
     }
 
-    private val filterClick: (String) -> Unit = { _ ->
+    private val filterClick: (Int) -> Unit = { id ->
+        findNavController().currentBackStackEntry?.savedStateHandle?.remove<String>("filterKey")
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("filterKey")
+            ?.observe(viewLifecycleOwner) { filterValue ->
+                goToFilter(id, filterValue)
+            }
         findNavController().navigate(
             R.id.action_movieFragment_to_filterOptionBottomSheet,
-            bundleOf("language" to "EN")
+            getFilterArgument(id)
         )
     }
 
@@ -100,7 +105,20 @@ class MoviesFragment : Fragment() {
         shimmerLayout.stopShimmer()
         shimmerLayout.visibility = View.GONE
         errorLayout.visibility = View.GONE
-
         videos.visibility = View.VISIBLE
+    }
+
+    private fun goToFilter(id: Int, filterValue: String) {
+        if (id == 0) {
+            viewModel.getRecommendedByLanguage(filterValue)
+        } else {
+            viewModel.getRecommendedByYear(filterValue)
+        }
+    }
+
+    private fun getFilterArgument(id: Int): Bundle = if (id == 0) {
+        bundleOf("language" to "language")
+    } else {
+        bundleOf("year" to "year")
     }
 }

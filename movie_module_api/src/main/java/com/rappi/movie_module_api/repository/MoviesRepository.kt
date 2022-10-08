@@ -8,6 +8,7 @@ interface MoviesRepository {
     suspend fun getTopRated(): List<Movie>
     suspend fun getRecommended(): List<Movie>
     suspend fun getMovieByYear(movieType: MovieType, year: String): List<Movie>
+    suspend fun getMovieByLanguage(movieType: MovieType, language: String): List<Movie>
     suspend fun getLanguages(): List<String>
     suspend fun getYear(): List<String>
 }

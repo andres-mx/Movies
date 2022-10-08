@@ -41,6 +41,13 @@ class MoviesRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getMovieByLanguage(movieType: MovieType, language: String): List<Movie> =
+        try {
+            localMovieSource.getMovieByLanguage(movieType, 6, language.lowercase())
+        } catch (ex: Exception) {
+            emptyList()
+        }
+
     override suspend fun getMovieByYear(movieType: MovieType, year: String): List<Movie> = try {
         localMovieSource.getMovieByYear(movieType, 6, year)
     } catch (ex: Exception) {
@@ -60,7 +67,16 @@ class MoviesRepositoryImpl @Inject constructor(
         emptyList()
     }
 
-    override suspend fun getYear(): List<String> {
-        TODO("Not yet implemented")
+    override suspend fun getYear(): List<String> = try {
+        val years = localMovieSource.getMovies(MovieType.RECOMMENDED, 19)
+        val yearList = mutableListOf<String>()
+        years.map { movie ->
+            if (movie.year?.isNotEmpty() == true) {
+                yearList.add(movie.year.orEmpty())
+            }
+        }
+        yearList.toSet().toList()
+    } catch (ex: Exception) {
+        emptyList()
     }
 }

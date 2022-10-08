@@ -1,3 +1,6 @@
 package com.rappi.movie_module.views.movies
 
-data class RecommendedViewData(val filterOptions: List<String>, val videos: List<VideosViewData>)
+data class RecommendedViewData(
+    val filterOptions: HashMap<Int, String>,
+    val videos: List<VideosViewData>
+)

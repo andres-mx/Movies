@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.rappi.movie_module.databinding.BottomSheetFilterOptionsBinding
 import com.rappi.movie_module.view_models.FiltersViewModel
@@ -17,6 +18,8 @@ class FilterOptionsBottomSheet : BottomSheetDialogFragment() {
     private var _binding: BottomSheetFilterOptionsBinding? = null
     private val binding: BottomSheetFilterOptionsBinding get() = _binding!!
     private lateinit var language: String
+    private lateinit var year: String
+    private var position: Int = 0
     private lateinit var filterAdapter: FilterAdapter
     private var filterList: MutableList<FilterOptionViewData> = mutableListOf()
 
@@ -30,6 +33,7 @@ class FilterOptionsBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        isCancelable = false
         setUpArguments(arguments)
         setUpObserve()
         initView()
@@ -38,6 +42,7 @@ class FilterOptionsBottomSheet : BottomSheetDialogFragment() {
 
     private fun setUpArguments(arguments: Bundle?) {
         language = arguments?.getString("language").orEmpty()
+        year = arguments?.getString("year").orEmpty()
     }
 
     private fun setUpObserve() {
@@ -59,13 +64,23 @@ class FilterOptionsBottomSheet : BottomSheetDialogFragment() {
         filterAdapter = FilterAdapter(filterOptionSelected)
         filterOptionRecyclerView.adapter = filterAdapter
         filterOptionRecyclerView.setHasFixedSize(true)
+        okButton.setOnClickListener {
+            println("ValueFilter: " + filterList[position].description)
+            findNavController().previousBackStackEntry?.savedStateHandle?.set(
+                "filterKey",
+                filterList[position].description
+            )
+            findNavController().popBackStack()
+        }
     }
 
     private fun request() {
         if (language.isNotEmpty()) viewModel.getLanguages(language)
+        if (year.isNotEmpty()) viewModel.getYears(year)
     }
 
     private val filterOptionSelected: (Int) -> Unit = { position ->
+        this.position = position
         dummy2(position)
     }
 

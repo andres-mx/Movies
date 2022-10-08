@@ -36,8 +36,10 @@ class LocalMovieSourceImpl @Inject constructor(private val moviesDao: MoviesDao)
         limit: Int,
         language: String
     ): List<Movie> {
-        val moviesDatabase = moviesDao.getMoviesByLanguage(movieType.name, limit, language)
+        val moviesDatabase =
+            moviesDao.getMoviesByLanguage(movieType.name, limit, language)
         val movies = mutableListOf<Movie>()
+        println("movies: "+moviesDatabase.size.toString())
         moviesDatabase.map { movieData ->
             movies.add(movieData.toMovie())
         }
