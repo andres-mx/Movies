@@ -11,6 +11,9 @@ import androidx.navigation.fragment.findNavController
 import com.rappi.core_module.MovieDetailFromMovieRoute
 import com.rappi.movie_module.R
 import com.rappi.movie_module.databinding.FragmentMoviesBinding
+import com.rappi.movie_module.utils.MovieUtils.FILTER_KEY_STRING
+import com.rappi.movie_module.utils.MovieUtils.LANGUAGE_STRING
+import com.rappi.movie_module.utils.MovieUtils.YEAR_STRING
 import com.rappi.movie_module.view_models.MoviesViewModel
 import com.rappi.movie_module.view_state.MovieViewState
 import com.rappi.movie_module.views.movies.MovieAdapter
@@ -90,8 +93,12 @@ class MoviesFragment : Fragment() {
     }
 
     private val filterClick: (Int) -> Unit = { id ->
-        findNavController().currentBackStackEntry?.savedStateHandle?.remove<String>("filterKey")
-        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>("filterKey")
+        findNavController().currentBackStackEntry?.savedStateHandle?.remove<String>(
+            FILTER_KEY_STRING
+        )
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<String>(
+            FILTER_KEY_STRING
+        )
             ?.observe(viewLifecycleOwner) { filterValue ->
                 goToFilter(id, filterValue)
             }
@@ -117,8 +124,8 @@ class MoviesFragment : Fragment() {
     }
 
     private fun getFilterArgument(id: Int): Bundle = if (id == 0) {
-        bundleOf("language" to "language")
+        bundleOf(LANGUAGE_STRING to LANGUAGE_STRING)
     } else {
-        bundleOf("year" to "year")
+        bundleOf(YEAR_STRING to YEAR_STRING)
     }
 }

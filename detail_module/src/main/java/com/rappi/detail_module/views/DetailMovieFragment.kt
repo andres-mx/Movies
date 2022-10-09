@@ -13,6 +13,8 @@ import coil.load
 import com.rappi.core_module.R
 import com.rappi.core_module.TrailerFromMovieDetailRoute
 import com.rappi.detail_module.databinding.FragmentDetailMovieBinding
+import com.rappi.detail_module.utils.MovieDetailUtils.EMPTY_STRING
+import com.rappi.detail_module.utils.MovieDetailUtils.MOVIE_ID
 import com.rappi.detail_module.view_models.MovieDetailViewModel
 import com.rappi.detail_module.view_state.MovieDetailViewState
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,7 +59,7 @@ class DetailMovieFragment : Fragment() {
     }
 
     private fun setUpArguments(arguments: Bundle?) {
-        movieId = arguments?.getInt("id") ?: 0
+        movieId = arguments?.getInt(MOVIE_ID) ?: 0
     }
 
     private fun setUpObserve() {
@@ -77,7 +79,7 @@ class DetailMovieFragment : Fragment() {
         yearButton.text = movieDetailViewData.year
         languageButton.text = movieDetailViewData.language
         ratingButton.text = movieDetailViewData.rating
-        genderTextView.text = ""
+        genderTextView.text = EMPTY_STRING
         originalTitleTextView.text = movieDetailViewData.originalTitle
         descriptionTextView.text = movieDetailViewData.description
     }

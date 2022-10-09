@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rappi.movie_module.utils.MovieUtils.ERROR_MOVIES_SERVICE
 import com.rappi.movie_module.utils.MovieUtils.getVideosData
 import com.rappi.movie_module.view_state.MovieViewState
 import com.rappi.movie_module_api.TopRated
@@ -69,7 +70,7 @@ class MoviesViewModel @Inject constructor(
                     )
                 )
                 if (videos.isEmpty()) {
-                    _moviesViewState.postValue(MovieViewState.MoviesFailure("Error al consumir el servicio del detalle de la película"))
+                    _moviesViewState.postValue(MovieViewState.MoviesFailure(ERROR_MOVIES_SERVICE))
                 } else {
                     _moviesViewState.postValue(MovieViewState.MoviesSuccessful(videos))
                 }
@@ -119,7 +120,7 @@ class MoviesViewModel @Inject constructor(
                     )
                 )
                 if (videos.isEmpty()) {
-                    _moviesViewState.postValue(MovieViewState.MoviesFailure("Error al consumir el servicio del detalle de la película"))
+                    _moviesViewState.postValue(MovieViewState.MoviesFailure(ERROR_MOVIES_SERVICE))
                 } else {
                     _moviesViewState.postValue(MovieViewState.MoviesSuccessful(videos))
                 }
@@ -169,7 +170,7 @@ class MoviesViewModel @Inject constructor(
                     )
                 )
                 if (videos.isEmpty()) {
-                    _moviesViewState.postValue(MovieViewState.MoviesFailure("Error al consumir el servicio del detalle de la película"))
+                    _moviesViewState.postValue(MovieViewState.MoviesFailure(ERROR_MOVIES_SERVICE))
                 } else {
                     _moviesViewState.postValue(MovieViewState.MoviesSuccessful(videos))
                 }

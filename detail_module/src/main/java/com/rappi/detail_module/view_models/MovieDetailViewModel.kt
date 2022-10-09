@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.rappi.detail_module.BuildConfig
+import com.rappi.detail_module.utils.MovieDetailUtils.toMovieDetailViewData
 import com.rappi.detail_module.view_state.MovieDetailViewState
-import com.rappi.detail_module.views.MovieDetailViewData
-import com.rappi.detail_module_api.data.MovieDetail
 import com.rappi.detail_module_api.domain.GetMovieDetailUseCase
 import com.rappi.detail_module_api.view_state.MovieDetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -49,17 +47,4 @@ class MovieDetailViewModel @Inject constructor(private val getMovieDetailUseCase
         }
     }
 }
-
-private fun MovieDetail?.toMovieDetailViewData() = MovieDetailViewData(
-    movieId = this?.movieId ?: 0,
-    imageUrl = BuildConfig.URLIMAGES + this?.imageUrl.orEmpty(),
-    year = this?.year?.toDateString().orEmpty(),
-    language = this?.language.orEmpty(),
-    title = this?.title.orEmpty(),
-    originalTitle = this?.originalTitle.orEmpty(),
-    description = this?.description.orEmpty(),
-    rating = this?.rating.orEmpty()
-)
-
-fun String.toDateString(): String = this.substring(0, 4)
 

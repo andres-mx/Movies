@@ -13,6 +13,11 @@ R.- En mi consideración debería tener lo siguiente:
     - Un código mantenible y escalable
 ### 3. Detalla cómo harías todo aquello que no hayas llegado a completar.
 R.- En mi opinión sería lo siguiente: 
-    - Buscaría integrar la api de Youtube en la parte del trailer, al tener mi módulo de trailer, debería ser sencillo anexarlo, para que todo quedebe dentro de la app.
-    - Integraría room para el manejo offline, ya que tengo mi repository sería fácil agregar room como otra dependencia y así mientras la app no se cierre que siga funcionando, una vez cerrada o abierta nuevamente limpiar todo la información si así se requiere.
-    - Para el filtro manejaría chips o un button con cambio de estado para el filtrado de las películas, usando el usecase que cree para esa sección.
+    - Buscaría integrar la api de Youtube en la parte del trailer, al tener mi módulo de trailer, debería ser sencillo anexarlo, para que todo quedebe dentro de la app, ya sea
+agregando un api independiente para el consumo del servicio de youtube y posteriormente al tener la url correcta mostrar dentro de la app el reproductor de video
+    - Integraría el borrado de la base datos por día para ir actualizando la información creando un usecase para la preferencia y que me guarde la fecha y simpre validando que si
+la fecha es mayor a la que se tiene guardada que borre las tablas del listado y el detalle de peliculas
+    - Agregaría pruebas de ViewModel y UI con la misma forma que cree las de repository por nombrar un ejemplo
+    - Sería un mejor manejo de las peticiones, con validaciones tomando como referencia que si al entrar a la app ya se fue por el listado o detalle de la película ir a la base datos
+y obtener la información necesaria, para esto tendría que crear 1 o 2 usecase adicionales para el manejo de esa lógica
+

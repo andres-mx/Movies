@@ -1,5 +1,7 @@
 package com.rappi.movie_module.data
 
+import com.rappi.movie_module.utils.MovieUtils.toMovie
+import com.rappi.movie_module.utils.MovieUtils.toMovieModel
 import com.rappi.movie_module_api.data.LocalMovieSource
 import com.rappi.movie_module_api.data.Movie
 import com.rappi.movie_module_api.data.MovieType
@@ -62,18 +64,3 @@ class LocalMovieSourceImpl @Inject constructor(private val moviesDao: MoviesDao)
     }
 }
 
-private fun Movie.toMovieModel(type: MovieType) = MovieModel(
-    movieId = this.movieId,
-    image = this.image,
-    language = this.language.orEmpty(),
-    year = this.year.orEmpty(),
-    type = type.name
-)
-
-private fun MovieModel.toMovie() = Movie(
-    movieId = this.movieId,
-    image = this.image,
-    language = this.language,
-    year = this.year,
-    type = this.type
-)

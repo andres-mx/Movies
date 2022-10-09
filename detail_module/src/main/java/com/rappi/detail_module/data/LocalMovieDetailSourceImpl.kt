@@ -1,9 +1,10 @@
 package com.rappi.detail_module.data
 
+import com.rappi.detail_module.utils.MovieDetailUtils.toMovieDetail
+import com.rappi.detail_module.utils.MovieDetailUtils.toMovieDetailModel
 import com.rappi.detail_module_api.data.LocalMovieDetailSource
 import com.rappi.detail_module_api.data.MovieDetail
 import com.rappi.detail_module_api.database.MovieDetailDao
-import com.rappi.detail_module_api.database.MovieDetailModel
 import javax.inject.Inject
 
 class LocalMovieDetailSourceImpl @Inject constructor(private val movieDetailDao: MovieDetailDao) :
@@ -20,25 +21,3 @@ class LocalMovieDetailSourceImpl @Inject constructor(private val movieDetailDao:
         movieDetailDao.deleteMoviesDetail()
     }
 }
-
-private fun MovieDetail.toMovieDetailModel(): MovieDetailModel = MovieDetailModel(
-    movieId = this.movieId,
-    imageUrl = this.imageUrl,
-    year = this.year,
-    language = this.language,
-    title = this.title,
-    originalTitle = this.originalTitle,
-    description = this.description,
-    rating = this.rating
-)
-
-private fun MovieDetailModel.toMovieDetail() = MovieDetail(
-    movieId = this.movieId,
-    imageUrl = this.imageUrl,
-    year = this.year,
-    language = this.language,
-    title = this.title,
-    originalTitle = this.originalTitle,
-    description = this.description,
-    rating = this.rating
-)

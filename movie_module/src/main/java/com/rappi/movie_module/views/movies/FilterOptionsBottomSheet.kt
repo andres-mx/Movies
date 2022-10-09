@@ -8,6 +8,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.rappi.movie_module.databinding.BottomSheetFilterOptionsBinding
+import com.rappi.movie_module.utils.MovieUtils.FILTER_KEY_STRING
+import com.rappi.movie_module.utils.MovieUtils.LANGUAGE_STRING
+import com.rappi.movie_module.utils.MovieUtils.YEAR_STRING
 import com.rappi.movie_module.view_models.FiltersViewModel
 import com.rappi.movie_module.view_state.FiltersState
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,8 +44,8 @@ class FilterOptionsBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun setUpArguments(arguments: Bundle?) {
-        language = arguments?.getString("language").orEmpty()
-        year = arguments?.getString("year").orEmpty()
+        language = arguments?.getString(LANGUAGE_STRING).orEmpty()
+        year = arguments?.getString(YEAR_STRING).orEmpty()
     }
 
     private fun setUpObserve() {
@@ -65,9 +68,8 @@ class FilterOptionsBottomSheet : BottomSheetDialogFragment() {
         filterOptionRecyclerView.adapter = filterAdapter
         filterOptionRecyclerView.setHasFixedSize(true)
         okButton.setOnClickListener {
-            println("ValueFilter: " + filterList[position].description)
             findNavController().previousBackStackEntry?.savedStateHandle?.set(
-                "filterKey",
+                FILTER_KEY_STRING,
                 filterList[position].description
             )
             findNavController().popBackStack()
