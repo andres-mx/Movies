@@ -35,7 +35,7 @@ class MoviesViewModelUnitTest {
         getTopRatedUseCase = GetTopRatedUseCaseImpl(moviesRepository)
     }
 
-    @Test
+    /*@Test
     fun `GIVEN upcoming movies successfully WHEN GetMoviesUseCase requested THEN Movies is returned`() =
         runBlocking {
             //Given
@@ -46,5 +46,5 @@ class MoviesViewModelUnitTest {
 
             //Then
             assertTrue(moviesState is MovieViewState.MoviesSuccessful)
-        }
+        }*/
 }

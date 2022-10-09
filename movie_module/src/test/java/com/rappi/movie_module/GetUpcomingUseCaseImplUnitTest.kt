@@ -1,6 +1,6 @@
 package com.rappi.movie_module
 
-import com.rappi.movie_module.domain.GetTopRatedUseCaseImpl
+import com.rappi.movie_module.domain.GetUpcomingUseCaseImpl
 import com.rappi.movie_module_api.domain.GetMoviesUseCase
 import com.rappi.movie_module_api.repository.MoviesRepository
 import com.rappi.movie_module_api.view_state.MovieState
@@ -15,20 +15,20 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
-class UpcomingUseCaseImplUnitTest {
+class GetUpcomingUseCaseImplUnitTest {
     private lateinit var getMoviesUseCase: GetMoviesUseCase
     private val repository: MoviesRepository = mock()
 
     @Before
     fun setUp() {
-        getMoviesUseCase = GetTopRatedUseCaseImpl(repository)
+        getMoviesUseCase = GetUpcomingUseCaseImpl(repository)
     }
 
     @Test
     fun `GIVEN upcoming movies successfully WHEN GetMoviesUseCase requested THEN Movies is returned`() =
         runTest {
             //Given
-            whenever(repository.getUpcoming()).thenReturn(MoviesData.movies())
+            whenever(repository.getUpcoming()).thenReturn(MoviesData.upcomingMovies())
 
             //When
             val moviesResult = getMoviesUseCase()

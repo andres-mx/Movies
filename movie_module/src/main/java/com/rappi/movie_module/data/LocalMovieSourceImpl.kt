@@ -9,26 +9,30 @@ import javax.inject.Inject
 
 class LocalMovieSourceImpl @Inject constructor(private val moviesDao: MoviesDao) :
     LocalMovieSource {
-    override suspend fun getMovies(movieType: MovieType, limit: Int): List<Movie> {
+    override suspend fun getMovies(movieType: MovieType, limit: Int): List<Movie> = try {
         val moviesDatabase = moviesDao.getMovies(movieType.name, limit)
         val movies = mutableListOf<Movie>()
         moviesDatabase.map { movieData ->
             movies.add(movieData.toMovie())
         }
-        return movies
+        movies
+    } catch (ex: Exception) {
+        emptyList()
     }
 
     override suspend fun getMovieByYear(
         movieType: MovieType,
         limit: Int,
         year: String
-    ): List<Movie> {
+    ): List<Movie> = try {
         val moviesDatabase = moviesDao.getMoviesByYear(movieType.name, limit, year)
         val movies = mutableListOf<Movie>()
         moviesDatabase.map { movieData ->
             movies.add(movieData.toMovie())
         }
-        return movies
+        movies
+    } catch (ex: Exception) {
+        emptyList()
     }
 
     override suspend fun getMovieByLanguage(
@@ -39,7 +43,6 @@ class LocalMovieSourceImpl @Inject constructor(private val moviesDao: MoviesDao)
         val moviesDatabase =
             moviesDao.getMoviesByLanguage(movieType.name, limit, language)
         val movies = mutableListOf<Movie>()
-        println("movies: "+moviesDatabase.size.toString())
         moviesDatabase.map { movieData ->
             movies.add(movieData.toMovie())
         }

@@ -26,7 +26,7 @@ class GetTopRatedUseCaseImplUnitTest {
     fun `GIVEN top rated movies successfully WHEN GetMoviesUseCase requested THEN Movies is returned`() =
         runTest {
             //Given
-            whenever(repository.getTopRated()).thenReturn(MoviesData.movies())
+            whenever(repository.getTopRated()).thenReturn(MoviesData.topRatedMovies())
 
             //When
             val moviesResult = getMoviesUseCase()

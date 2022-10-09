@@ -1,7 +1,5 @@
 package com.rappi.movie_module
 
-import com.rappi.movie_module.MoviesData.LANGUAGE
-import com.rappi.movie_module.MoviesData.YEAR
 import com.rappi.movie_module.domain.GetRecommendedUseCaseImpl
 import com.rappi.movie_module_api.domain.GetRecommendedUseCase
 import com.rappi.movie_module_api.repository.MoviesRepository
@@ -25,39 +23,39 @@ class GetRecommendedUseCaseImplUnitTest {
     }
 
     @Test
-    fun `GIVEN recommended movies by language and year successfully WHEN GetRecommendedUseCase requested THEN Movies is returned`() =
+    fun `GIVEN recommended movies successfully WHEN GetRecommendedUseCase requested THEN Movies is returned`() =
         runTest {
             //Given
-            whenever(repository.getRecommended(LANGUAGE, YEAR)).thenReturn(MoviesData.movies())
+            whenever(repository.getRecommended()).thenReturn(MoviesData.recommendedMovies())
 
             //When
-            val moviesResult = getRecommendedUseCase(LANGUAGE, YEAR)
+            val moviesResult = getRecommendedUseCase()
 
             //Then
             Assert.assertTrue(moviesResult is MovieState.RecommendedSuccessful)
         }
 
     @Test
-    fun `GIVEN recommended movies by language and year successfully WHEN GetRecommendedUseCase requested THEN Movies empty is returned`() =
+    fun `GIVEN recommended movies successfully WHEN GetRecommendedUseCase requested THEN Movies empty is returned`() =
         runTest {
             //Given
-            whenever(repository.getRecommended(LANGUAGE, YEAR)).thenReturn(emptyList())
+            whenever(repository.getRecommended()).thenReturn(emptyList())
 
             //When
-            val moviesResult = getRecommendedUseCase(LANGUAGE, YEAR)
+            val moviesResult = getRecommendedUseCase()
 
             //Then
             Assert.assertTrue(moviesResult is MovieState.RecommendedEmpty)
         }
 
     @Test
-    fun `GIVEN recommended movies by language and year error WHEN GetRecommendedUseCase requested THEN Movies is failure`() =
+    fun `GIVEN recommended movies error WHEN GetRecommendedUseCase requested THEN Movies is failure`() =
         runTest {
             //Given
-            whenever(repository.getRecommended(LANGUAGE, YEAR)).thenReturn(null)
+            whenever(repository.getRecommended()).thenReturn(null)
 
             //When
-            val moviesResult = getRecommendedUseCase(LANGUAGE, YEAR)
+            val moviesResult = getRecommendedUseCase()
 
             //Then
             Assert.assertTrue(moviesResult is MovieState.RecommendedFailure)

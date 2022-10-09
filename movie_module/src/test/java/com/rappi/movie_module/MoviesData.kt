@@ -3,20 +3,352 @@ package com.rappi.movie_module
 import com.rappi.movie_module.data.MovieResponse
 import com.rappi.movie_module.data.Result
 import com.rappi.movie_module_api.data.Movie
+import com.rappi.movie_module_api.database.MovieModel
 import com.rappi.movie_module_api.view_state.MovieState
 import com.rappi.movie_module_api.view_state.MovieState.UpComingSuccessful
 
 object MoviesData {
     const val YEAR = "2022"
     const val LANGUAGE = "EN"
-    fun movies(): List<Movie> =
+    const val LIMIT = 6
+    fun upcomingMovies(): List<Movie> =
         listOf(
-            Movie(movieId = 1, "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg"),
-            Movie(movieId = 2, "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg"),
-            Movie(movieId = 3, "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg"),
-            Movie(movieId = 4, "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg"),
-            Movie(movieId = 5, "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg"),
-            Movie(movieId = 6, "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg"),
+            Movie(
+                movieId = 1,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "UPCOMING"
+            ),
+            Movie(
+                movieId = 2,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "UPCOMING"
+            ),
+            Movie(
+                movieId = 3,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "es",
+                year = "2022",
+                type = "UPCOMING"
+            ),
+            Movie(
+                movieId = 4,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "es",
+                year = "2022",
+                type = "UPCOMING"
+            ),
+            Movie(
+                movieId = 5,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "fr",
+                year = "2022",
+                type = "UPCOMING"
+            ),
+            Movie(
+                movieId = 6,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "it",
+                year = "2020",
+                type = "UPCOMING"
+            ),
+        )
+
+    fun topRatedMovies(): List<Movie> =
+        listOf(
+            Movie(
+                movieId = 1,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "TOP_RATED"
+            ),
+            Movie(
+                movieId = 2,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "TOP_RATED"
+            ),
+            Movie(
+                movieId = 3,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "es",
+                year = "2022",
+                type = "TOP_RATED"
+            ),
+            Movie(
+                movieId = 4,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "es",
+                year = "2022",
+                type = "TOP_RATED"
+            ),
+            Movie(
+                movieId = 5,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "fr",
+                year = "2022",
+                type = "TOP_RATED"
+            ),
+            Movie(
+                movieId = 6,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "it",
+                year = "2022",
+                type = "TOP_RATED"
+            ),
+        )
+
+    fun recommendedMovies(): List<Movie> =
+        listOf(
+            Movie(
+                movieId = 1,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            Movie(
+                movieId = 2,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            Movie(
+                movieId = 3,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "es",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            Movie(
+                movieId = 4,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "es",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            Movie(
+                movieId = 5,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "fr",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            Movie(
+                movieId = 6,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "it",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+        )
+
+    fun upcomingMoviesModel(): List<MovieModel> =
+        listOf(
+            MovieModel(
+                movieId = 1,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "UPCOMING"
+            ),
+            MovieModel(
+                movieId = 2,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "UPCOMING"
+            ),
+            MovieModel(
+                movieId = 3,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "UPCOMING"
+            ),
+            MovieModel(
+                movieId = 4,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "UPCOMING"
+            ),
+            MovieModel(
+                movieId = 5,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "UPCOMING"
+            ),
+            MovieModel(
+                movieId = 6,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "UPCOMING"
+            ),
+        )
+
+    fun topRatedMoviesModel(): List<MovieModel> =
+        listOf(
+            MovieModel(
+                movieId = 1,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "TOP_RATED"
+            ),
+            MovieModel(
+                movieId = 2,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "TOP_RATED"
+            ),
+            MovieModel(
+                movieId = 3,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "TOP_RATED"
+            ),
+            MovieModel(
+                movieId = 4,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "TOP_RATED"
+            ),
+            MovieModel(
+                movieId = 5,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "TOP_RATED"
+            ),
+            MovieModel(
+                movieId = 6,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "TOP_RATED"
+            ),
+        )
+
+    fun recommendedMoviesModel(): List<MovieModel> =
+        listOf(
+            MovieModel(
+                movieId = 1,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            MovieModel(
+                movieId = 2,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            MovieModel(
+                movieId = 3,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "es",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            MovieModel(
+                movieId = 4,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "es",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            MovieModel(
+                movieId = 5,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            MovieModel(
+                movieId = 6,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "it",
+                year = "2020",
+                type = "RECOMMENDED"
+            ),
+        )
+
+    fun recommendedByYearMoviesModel(): List<MovieModel> =
+        listOf(
+            MovieModel(
+                movieId = 1,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            MovieModel(
+                movieId = 2,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            MovieModel(
+                movieId = 3,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "es",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            MovieModel(
+                movieId = 4,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "es",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            MovieModel(
+                movieId = 5,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "RECOMMENDED"
+            )
+        )
+
+    fun recommendedByLanguageMoviesModel(): List<MovieModel> =
+        listOf(
+            MovieModel(
+                movieId = 1,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            MovieModel(
+                movieId = 2,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "RECOMMENDED"
+            ),
+            MovieModel(
+                movieId = 5,
+                image = "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg",
+                language = "en",
+                year = "2022",
+                type = "RECOMMENDED"
+            )
         )
 
     fun moviesResponse(): MovieResponse = MovieResponse(
@@ -34,6 +366,6 @@ object MoviesData {
     )
 
     fun moviesState(): MovieState {
-        return UpComingSuccessful(movies())
+        return UpComingSuccessful(upcomingMovies())
     }
 }
