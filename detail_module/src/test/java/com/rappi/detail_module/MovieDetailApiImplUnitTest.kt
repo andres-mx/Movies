@@ -1,5 +1,6 @@
 package com.rappi.detail_module
 
+import com.rappi.detail_module.DetailData.MOVIE_ID
 import com.rappi.detail_module.data.DetailMovieResponse
 import com.rappi.detail_module.data.MovieDetailApiImpl
 import com.rappi.detail_module.data.MovieDetailService
@@ -28,10 +29,10 @@ class MovieDetailApiImplUnitTest {
     fun `GIVEN movie detail successfully WHEN movie requested THEN Movies is returned`() =
         runTest {
             //Given
-            whenever(services.getMovieDetail(movieId = 70)).thenReturn(DetailMovieResponse(id = 70))
+            whenever(services.getMovieDetail(movieId = MOVIE_ID)).thenReturn(DetailMovieResponse(id = MOVIE_ID))
 
             //When
-            val movieDetailResult = movieDetailApi.getDetailMovie(70)
+            val movieDetailResult = movieDetailApi.getDetailMovie(MOVIE_ID)
 
             //Then
             Assert.assertNotNull(movieDetailResult)
@@ -41,10 +42,10 @@ class MovieDetailApiImplUnitTest {
     fun `GIVEN movie detail successfully WHEN movie requested THEN movieId is null`() =
         runTest {
             //Given
-            whenever(services.getMovieDetail(movieId = 70)).thenReturn(DetailMovieResponse(id = null))
+            whenever(services.getMovieDetail(movieId = MOVIE_ID)).thenReturn(DetailMovieResponse(id = null))
 
             //When
-            val movieDetailResult = movieDetailApi.getDetailMovie(70)
+            val movieDetailResult = movieDetailApi.getDetailMovie(MOVIE_ID)
 
             //Then
             Assert.assertNull(movieDetailResult?.movieId)
@@ -54,10 +55,10 @@ class MovieDetailApiImplUnitTest {
     fun `GIVEN movie detail successfully WHEN movie requested THEN Movies is null`() =
         runTest {
             //Given
-            whenever(services.getMovieDetail(movieId = 70)).thenReturn(null)
+            whenever(services.getMovieDetail(movieId = MOVIE_ID)).thenReturn(null)
 
             //When
-            val movieDetailResult = movieDetailApi.getDetailMovie(70)
+            val movieDetailResult = movieDetailApi.getDetailMovie(MOVIE_ID)
 
             //Then
             Assert.assertNull(movieDetailResult?.movieId)

@@ -9,12 +9,7 @@ import javax.inject.Inject
 class LocalMovieDetailSourceImpl @Inject constructor(private val movieDetailDao: MovieDetailDao) :
     LocalMovieDetailSource {
     override suspend fun getMovieDetail(movieId: Int): MovieDetail? {
-        val movieDetail = movieDetailDao.getMovieDetail(movieId)
-        return if (movieDetail.movieId != null) {
-            movieDetail.toMovieDetail()
-        } else {
-            null
-        }
+        return movieDetailDao.getMovieDetail(movieId)?.toMovieDetail()
     }
 
     override suspend fun addMovieDetail(movieDetail: MovieDetail) {
