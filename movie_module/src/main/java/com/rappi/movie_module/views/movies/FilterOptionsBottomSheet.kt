@@ -56,16 +56,20 @@ class FilterOptionsBottomSheet : BottomSheetDialogFragment() {
 
     private fun renderUi(filterState: FiltersState?) = when (filterState) {
         is FiltersState.FiltersSuccessful -> {
-            filterList = filterState.filters.toMutableList()
-            filterAdapter.submitList(filterState.filters.toMutableList())
+            recyclerViewFill(filterState.filters)
         }
         is FiltersState.FilterFailure -> {}
         else -> {}
     }
 
+    private fun recyclerViewFill(list: List<FilterOptionViewData>) = with(binding) {
+        binding.filterOptionRecyclerView.adapter = filterAdapter
+        filterList = list.toMutableList()
+        filterAdapter.submitList(list.toMutableList())
+    }
+
     private fun initView() = with(binding) {
         filterAdapter = FilterAdapter(filterOptionSelected)
-        filterOptionRecyclerView.adapter = filterAdapter
         filterOptionRecyclerView.setHasFixedSize(true)
         okButton.setOnClickListener {
             findNavController().previousBackStackEntry?.savedStateHandle?.set(
